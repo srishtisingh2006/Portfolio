@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sanskriti Singh — Creative Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root {
+  --blush:#fce8ed; --rose:#f7c5d0; --petal:#f0a0b8;
+  --deep:#c2607a; --bark:#6b3a4a; --cream:#fff8f9;
+  --text:#4a2535; --muted:#9b6070; --white:#ffffff;
+  --shadow:0 8px 40px rgba(194,96,122,0.12);
+  --shadow2:0 2px 16px rgba(194,96,122,0.18);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:var(--blush);color:var(--text);overflow-x:hidden;cursor:none;}
+
+.cursor{width:12px;height:12px;background:var(--deep);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s,background 0.2s;}
+.cursor-ring{width:36px;height:36px;border:1.5px solid var(--petal);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.18s ease,width 0.2s,height 0.2s;}
+
+#blossom-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
+
+nav{position:fixed;top:0;width:100%;z-index:100;padding:16px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(252,232,237,0.82);backdrop-filter:blur(16px);border-bottom:1px solid rgba(240,160,184,0.2);}
+.nav-logo{font-family:'Dancing Script',cursive;font-size:1.7rem;color:var(--deep);text-decoration:none;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:0.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--bark);text-decoration:none;position:relative;transition:color 0.3s;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--petal);border-radius:2px;transition:width 0.3s;}
+.nav-links a:hover{color:var(--deep);}
+.nav-links a:hover::after{width:100%;}
+
+/* HERO */
+#hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:120px 24px 80px;}
+.hero-badge{display:inline-block;background:rgba(240,160,184,0.25);border:1px solid var(--petal);color:var(--deep);font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 20px;border-radius:30px;margin-bottom:28px;animation:fadeUp 0.8s ease both;}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,10vw,8.5rem);font-weight:300;line-height:1;color:var(--bark);animation:fadeUp 0.9s 0.1s ease both;letter-spacing:-2px;}
+.hero-name em{font-style:italic;color:var(--deep);}
+.hero-sub{font-family:'Dancing Script',cursive;font-size:clamp(1.3rem,3vw,2rem);color:var(--muted);margin-top:14px;animation:fadeUp 1s 0.2s ease both;}
+.hero-desc{max-width:540px;font-size:0.95rem;line-height:1.85;color:var(--muted);margin:22px auto 0;animation:fadeUp 1s 0.3s ease both;}
+.hero-btns{display:flex;gap:16px;justify-content:center;margin-top:38px;animation:fadeUp 1s 0.4s ease both;flex-wrap:wrap;}
+.btn-primary{background:var(--deep);color:#fff;padding:14px 36px;border-radius:50px;font-size:0.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;box-shadow:0 6px 24px rgba(194,96,122,0.35);transition:all 0.3s;border:none;font-family:'Nunito',sans-serif;cursor:none;}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(194,96,122,0.45);}
+.btn-outline{border:1.5px solid var(--petal);color:var(--deep);padding:13px 36px;border-radius:50px;font-size:0.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:all 0.3s;}
+.btn-outline:hover{background:var(--petal);color:var(--bark);transform:translateY(-3px);}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;animation:fadeUp 1.2s 0.7s ease both;}
+.scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,var(--petal),transparent);animation:pulse 1.8s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+/* SECTIONS */
+section{position:relative;z-index:1;padding:86px 24px;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-label{font-size:0.68rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--petal);margin-bottom:8px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:300;color:var(--bark);line-height:1.1;margin-bottom:14px;}
+.section-title em{font-style:italic;color:var(--deep);}
+
+/* ABOUT */
+#about{background:var(--cream);}
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center;margin-top:48px;}
+.about-img-frame{width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,var(--rose),var(--petal));border-radius:40% 60% 55% 45%/45% 50% 50% 55%;display:flex;align-items:center;justify-content:center;font-size:5rem;box-shadow:var(--shadow);animation:morphBlob 8s ease-in-out infinite;position:relative;}
+.about-img-frame i{color:rgba(255,255,255,0.55);}
+@keyframes morphBlob{0%,100%{border-radius:40% 60% 55% 45%/45% 50% 50% 55%;}33%{border-radius:55% 45% 40% 60%/50% 45% 55% 50%;}66%{border-radius:45% 55% 60% 40%/55% 50% 45% 50%;}}
+.about-img-wrap{position:relative;}
+.float-tag{position:absolute;background:white;border-radius:18px;padding:9px 16px;box-shadow:var(--shadow2);font-size:0.75rem;font-weight:700;color:var(--deep);display:flex;align-items:center;gap:7px;}
+.float-tag i{color:var(--petal);}
+.tag1{bottom:-16px;right:-16px;}
+.tag2{top:18px;left:-18px;}
+.about-text p{font-size:0.95rem;line-height:1.9;color:var(--muted);margin-bottom:18px;}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+.stat-card{background:var(--blush);border-radius:18px;padding:18px;text-align:center;border:1px solid rgba(240,160,184,0.3);transition:transform 0.3s;}
+.stat-card:hover{transform:translateY(-4px);}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;color:var(--deep);line-height:1;}
+.stat-lbl{font-size:0.68rem;color:var(--muted);margin-top:4px;font-weight:600;letter-spacing:1px;}
+
+/* SKILLS */
+#skills{background:var(--blush);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:22px;margin-top:46px;}
+.skill-card{background:white;border-radius:22px;padding:30px 26px;box-shadow:var(--shadow);transition:all 0.35s;border:1px solid rgba(240,160,184,0.2);position:relative;overflow:hidden;}
+.skill-card::before{content:'';position:absolute;top:-40px;right:-40px;width:100px;height:100px;background:linear-gradient(135deg,var(--rose),transparent);border-radius:50%;transition:transform 0.4s;}
+.skill-card:hover{transform:translateY(-8px);box-shadow:0 16px 60px rgba(194,96,122,0.18);}
+.skill-card:hover::before{transform:scale(1.6);}
+.skill-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--rose),var(--petal));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--deep);margin-bottom:18px;}
+.skill-card h3{font-size:1rem;font-weight:700;color:var(--bark);margin-bottom:9px;}
+.skill-card p{font-size:0.82rem;color:var(--muted);line-height:1.7;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:13px;}
+.skill-tag{background:var(--blush);color:var(--deep);font-size:0.65rem;font-weight:700;padding:3px 10px;border-radius:20px;}
+
+/* PORTFOLIO */
+#portfolio{background:var(--cream);}
+.port-filters{display:flex;gap:10px;flex-wrap:wrap;margin:32px 0;}
+.filter-btn{padding:8px 20px;border-radius:30px;border:1.5px solid var(--petal);background:transparent;color:var(--bark);font-size:0.75rem;font-weight:700;letter-spacing:1px;cursor:none;transition:all 0.3s;font-family:'Nunito',sans-serif;}
+.filter-btn.active,.filter-btn:hover{background:var(--deep);border-color:var(--deep);color:white;}
+.port-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:26px;}
+.port-card{background:white;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);transition:all 0.35s;border:1px solid rgba(240,160,184,0.15);}
+.port-card:hover{transform:translateY(-10px);box-shadow:0 20px 60px rgba(194,96,122,0.2);}
+.port-card.hidden{display:none;}
+.port-thumb{width:100%;height:190px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden;}
+.port-overlay{position:absolute;inset:0;background:rgba(107,58,74,0.75);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;}
+.port-card:hover .port-overlay{opacity:1;}
+.port-overlay span{color:white;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1.5px solid rgba(255,255,255,0.5);padding:9px 22px;border-radius:30px;}
+.port-info{padding:22px;}
+.port-cat{font-size:0.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--petal);margin-bottom:7px;}
+.port-info h3{font-size:0.97rem;font-weight:700;color:var(--bark);margin-bottom:7px;}
+.port-info p{font-size:0.8rem;color:var(--muted);line-height:1.65;}
+.port-tools{display:flex;flex-wrap:wrap;gap:5px;margin-top:13px;}
+.port-tool{background:var(--blush);color:var(--deep);font-size:0.62rem;font-weight:700;padding:3px 9px;border-radius:20px;}
+
+/* EXCEL SHOWCASE */
+.excel-showcase{background:white;border-radius:24px;padding:32px;box-shadow:var(--shadow);margin-top:28px;border:1px solid rgba(240,160,184,0.2);}
+.excel-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
+.excel-tab{padding:7px 18px;border-radius:20px;border:1.5px solid var(--petal);background:transparent;color:var(--bark);font-size:0.75rem;font-weight:700;cursor:none;transition:all 0.3s;font-family:'Nunito',sans-serif;}
+.excel-tab.active{background:var(--deep);border-color:var(--deep);color:white;}
+.sheet-view{display:none;}
+.sheet-view.active{display:block;}
+.sheet-title{font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--petal);margin-bottom:14px;}
+.data-table{width:100%;border-collapse:collapse;font-size:0.8rem;}
+.data-table th{background:linear-gradient(135deg,var(--rose),var(--petal));color:var(--bark);padding:10px 14px;text-align:left;font-weight:700;font-size:0.72rem;letter-spacing:0.5px;}
+.data-table th:first-child{border-radius:10px 0 0 0;}
+.data-table th:last-child{border-radius:0 10px 0 0;}
+.data-table td{padding:9px 14px;border-bottom:1px solid rgba(240,160,184,0.2);color:var(--text);}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:hover td{background:rgba(252,232,237,0.5);}
+.badge-yes{background:#d4edda;color:#155724;padding:2px 10px;border-radius:12px;font-size:0.68rem;font-weight:700;}
+.badge-no{background:#f8d7da;color:#721c24;padding:2px 10px;border-radius:12px;font-size:0.68rem;font-weight:700;}
+.badge-done{background:#d4edda;color:#155724;padding:2px 10px;border-radius:12px;font-size:0.68rem;font-weight:700;}
+.badge-pending{background:#fff3cd;color:#856404;padding:2px 10px;border-radius:12px;font-size:0.68rem;font-weight:700;}
+
+/* EXPERIENCE */
+#experience{background:var(--blush);}
+.exp-timeline{margin-top:46px;position:relative;}
+.exp-timeline::before{content:'';position:absolute;left:22px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--petal),transparent);}
+.exp-item{display:flex;gap:30px;margin-bottom:36px;padding-left:8px;}
+.exp-dot{width:28px;height:28px;flex-shrink:0;background:white;border:3px solid var(--petal);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:4px;box-shadow:0 0 0 4px rgba(240,160,184,0.2);}
+.exp-dot i{font-size:0.6rem;color:var(--deep);}
+.exp-card{flex:1;background:white;border-radius:20px;padding:26px 30px;box-shadow:var(--shadow);border:1px solid rgba(240,160,184,0.2);transition:transform 0.3s;}
+.exp-card:hover{transform:translateX(6px);}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;}
+.exp-title{font-size:1rem;font-weight:700;color:var(--bark);}
+.exp-company{color:var(--deep);font-weight:600;font-size:0.88rem;margin-top:3px;}
+.exp-date{background:var(--blush);color:var(--muted);font-size:0.7rem;font-weight:700;padding:4px 13px;border-radius:20px;white-space:nowrap;}
+.exp-list{margin-top:14px;list-style:none;}
+.exp-list li{font-size:0.83rem;color:var(--muted);line-height:1.7;padding-left:17px;position:relative;margin-bottom:5px;}
+.exp-list li::before{content:'✿';position:absolute;left:0;color:var(--petal);font-size:0.65rem;}
+.exp-achievement{margin-top:13px;background:linear-gradient(135deg,rgba(252,232,237,0.8),rgba(247,197,208,0.4));border-left:3px solid var(--petal);border-radius:0 12px 12px 0;padding:9px 15px;font-size:0.8rem;color:var(--deep);font-weight:600;}
+
+/* EDUCATION */
+#education{background:var(--cream);}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px;margin-top:46px;}
+.edu-card{background:white;border-radius:22px;padding:30px;box-shadow:var(--shadow);border:1px solid rgba(240,160,184,0.2);transition:transform 0.3s;position:relative;overflow:hidden;}
+.edu-card::after{content:'🌸';position:absolute;bottom:-8px;right:8px;font-size:3.5rem;opacity:0.08;}
+.edu-card:hover{transform:translateY(-6px);}
+.edu-year{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:600;color:var(--rose);line-height:1;margin-bottom:10px;}
+.edu-card h3{font-size:0.97rem;font-weight:700;color:var(--bark);margin-bottom:5px;}
+.edu-card p{font-size:0.8rem;color:var(--muted);line-height:1.6;}
+.edu-badge{display:inline-block;background:var(--blush);color:var(--deep);font-size:0.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 11px;border-radius:20px;margin-top:11px;}
+
+/* CERTS */
+#certifications{background:var(--blush);}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:18px;margin-top:46px;}
+.cert-card{background:white;border-radius:20px;padding:26px 22px;box-shadow:var(--shadow);border:1px solid rgba(240,160,184,0.2);transition:all 0.3s;text-align:center;}
+.cert-card:hover{transform:translateY(-6px);box-shadow:0 14px 50px rgba(194,96,122,0.18);}
+.cert-icon{width:52px;height:52px;background:linear-gradient(135deg,var(--rose),var(--petal));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:white;margin:0 auto 14px;}
+.cert-card h3{font-size:0.88rem;font-weight:700;color:var(--bark);margin-bottom:7px;}
+.cert-card p{font-size:0.76rem;color:var(--muted);line-height:1.6;}
+.cert-date{font-size:0.65rem;color:var(--petal);font-weight:700;margin-top:9px;letter-spacing:1px;}
+
+/* CONTACT */
+#contact{background:var(--cream);}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:46px;align-items:start;}
+.contact-info h3{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:var(--bark);margin-bottom:14px;}
+.contact-info p{font-size:0.88rem;color:var(--muted);line-height:1.85;margin-bottom:28px;}
+.contact-items{display:flex;flex-direction:column;gap:14px;}
+.contact-item{display:flex;align-items:center;gap:14px;}
+.c-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--rose),var(--petal));border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-size:0.95rem;flex-shrink:0;}
+.contact-item span{font-size:0.85rem;color:var(--bark);font-weight:600;}
+.contact-form{display:flex;flex-direction:column;gap:14px;}
+.form-group{display:flex;flex-direction:column;gap:5px;}
+.form-group label{font-size:0.7rem;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;}
+.form-group input,.form-group textarea{background:white;border:1.5px solid rgba(240,160,184,0.35);border-radius:13px;padding:12px 16px;font-size:0.88rem;color:var(--text);font-family:'Nunito',sans-serif;transition:border-color 0.3s;resize:none;cursor:none;}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--petal);box-shadow:0 0 0 3px rgba(240,160,184,0.15);}
+.form-group textarea{height:115px;}
+
+/* FOOTER */
+footer{position:relative;z-index:1;background:var(--bark);color:rgba(255,255,255,0.55);text-align:center;padding:28px 24px;font-size:0.8rem;}
+footer span{color:var(--petal);}
+.heart{color:var(--petal);display:inline-block;animation:hb 1.4s ease infinite;}
+@keyframes hb{0%,100%{transform:scale(1);}50%{transform:scale(1.35);}}
+
+/* REVEAL */
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:768px){
+  nav{padding:14px 18px;}
+  .nav-links{display:none;}
+  .about-grid,.contact-wrap{grid-template-columns:1fr;}
+  .about-img-wrap{max-width:260px;margin:0 auto;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<canvas id="blossom-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Sanskriti ✿</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge">✿ Available for Opportunities</div>
+  <h1 class="hero-name">San<em>skriti</em><br>Singh</h1>
+  <p class="hero-sub">Digital Marketer · Website Designer · Content Creator</p>
+  <p class="hero-desc">A passionate creative from Delhi building beautiful digital experiences — from responsive websites to AI-powered visual stories and clean data work.</p>
+  <div class="hero-btns">
+    <a href="#portfolio" class="btn-primary">View My Work</a>
+    <a href="#contact" class="btn-outline">Get In Touch</a>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">✿ Who I Am</p>
+      <h2 class="section-title">A creative who turns<br><em>ideas into impact</em></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <div class="about-img-frame"><i class="fas fa-seedling"></i></div>
+        <div class="float-tag tag1"><i class="fas fa-star"></i> Creative Mind</div>
+        <div class="float-tag tag2"><i class="fas fa-laptop-code"></i> Web + AI</div>
+      </div>
+      <div class="about-text reveal">
+        <p>Hi! I'm <strong>Sanskriti Singh</strong> — a BBA student at IGNOU and a self-driven digital creative based in Delhi. I discovered my love for design and marketing through hands-on projects and never looked back.</p>
+        <p>From building a full logistics company website with HTML, CSS & JavaScript, to generating cinematic AI videos, creating elegant brand intros, and managing structured data in Excel — I love the intersection of technology and creativity.</p>
+        <p>I'm currently deepening my skills in digital marketing and website designing, and I'm always looking for opportunities where I can learn, create, and contribute in a real-world environment.</p>
+        <div class="about-stats">
+          <div class="stat-card"><div class="stat-num">1+</div><div class="stat-lbl">Website Launched</div></div>
+          <div class="stat-card"><div class="stat-num">5+</div><div class="stat-lbl">Certifications</div></div>
+          <div class="stat-card"><div class="stat-num">∞</div><div class="stat-lbl">Creative Ideas</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">✿ What I Bring</p>
+      <h2 class="section-title">Skills &amp; <em>Expertise</em></h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon"><i class="fas fa-code"></i></div>
+        <h3>Web Development</h3>
+        <p>Building responsive, clean websites from scratch with attention to UI and performance.</p>
+        <div class="skill-tags"><span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span><span class="skill-tag">JavaScript</span><span class="skill-tag">Responsive</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon"><i class="fas fa-bullhorn"></i></div>
+        <h3>Digital Marketing</h3>
+        <p>Creating email sequences, social content, and marketing strategies that drive engagement.</p>
+        <div class="skill-tags"><span class="skill-tag">Email Marketing</span><span class="skill-tag">Social Media</span><span class="skill-tag">Content Strategy</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+        <h3>AI Content Creation</h3>
+        <p>Generating stunning AI images and cinematic videos for brand storytelling and marketing.</p>
+        <div class="skill-tags"><span class="skill-tag">AI Image Gen</span><span class="skill-tag">AI Video Gen</span><span class="skill-tag">Visual Storytelling</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon"><i class="fas fa-palette"></i></div>
+        <h3>Design & Multimedia</h3>
+        <p>Designing presentations, graphics, and video edits for a polished professional look.</p>
+        <div class="skill-tags"><span class="skill-tag">Canva</span><span class="skill-tag">Video Editing</span><span class="skill-tag">PowerPoint</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon"><i class="fas fa-table"></i></div>
+        <h3>Data Entry & Excel</h3>
+        <p>Handling spreadsheets, data entry, documentation and office workflows accurately and efficiently.</p>
+        <div class="skill-tags"><span class="skill-tag">MS Excel</span><span class="skill-tag">MS Word</span><span class="skill-tag">Data Entry</span><span class="skill-tag">Task Tracking</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon"><i class="fas fa-comments"></i></div>
+        <h3>Communication</h3>
+        <p>Strong written and verbal communication in English with excellent time management.</p>
+        <div class="skill-tags"><span class="skill-tag">English (Spoken)</span><span class="skill-tag">Presentations</span><span class="skill-tag">Teamwork</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">✿ My Work</p>
+      <h2 class="section-title">Creative <em>Portfolio</em></h2>
+    </div>
+    <div class="port-filters reveal">
+      <button class="filter-btn active" onclick="filterPort(this,'all')">All</button>
+      <button class="filter-btn" onclick="filterPort(this,'web')">Websites</button>
+      <button class="filter-btn" onclick="filterPort(this,'video')">AI Videos</button>
+      <button class="filter-btn" onclick="filterPort(this,'brand')">Branding</button>
+      <button class="filter-btn" onclick="filterPort(this,'data')">Data Entry</button>
+    </div>
+    <div class="port-grid" id="portGrid">
+
+      <div class="port-card reveal" data-cat="web" onclick="window.open('dreamwell.html','_blank')" style="cursor:pointer;">
+        <div class="port-thumb" style="background:linear-gradient(135deg,#1a3c5e,#2563a8);">🏠
+          <div class="port-overlay"><span>View Project ↗</span></div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Website</div>
+          <h3>DreamWell Real Estate</h3>
+          <p>Professional real estate landing page with property listings, search filters, and modern UI.</p>
+          <div class="port-tools"><span class="port-tool">HTML</span><span class="port-tool">CSS</span><span class="port-tool">JavaScript</span></div>
+        </div>
+      </div>
+
+      <div class="port-card reveal" data-cat="web" onclick="window.open('dnd-logistics.html','_blank')" style="cursor:pointer;">
+        <div class="port-thumb" style="background:linear-gradient(135deg,#0f2027,#2c5364);">🚚
+          <div class="port-overlay"><span>View Project ↗</span></div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Website · Live</div>
+          <h3>D&amp;D Logistics Website</h3>
+          <p>Full responsive website for a freight forwarding company. Multi-page, launched live at dndlogistics.in</p>
+          <div class="port-tools"><span class="port-tool">HTML</span><span class="port-tool">CSS</span><span class="port-tool">JavaScript</span><span class="port-tool">Responsive</span></div>
+        </div>
+      </div>
+
+      <div class="port-card reveal" data-cat="web" onclick="window.open('shab-production.html','_blank')" style="cursor:pointer;">
+        <div class="port-thumb" style="background:linear-gradient(135deg,#1a1a2e,#c2607a);">🎬
+          <div class="port-overlay"><span>View Project ↗</span></div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Website · Ad Page</div>
+          <h3>Shab Production</h3>
+          <p>Cinematic production house landing page with dark luxury aesthetics and smooth animations.</p>
+          <div class="port-tools"><span class="port-tool">HTML</span><span class="port-tool">CSS</span><span class="port-tool">Animations</span></div>
+        </div>
+      </div>
+
+      <div class="port-card reveal" data-cat="web" onclick="window.open('hs-antihairfall.html','_blank')" style="cursor:pointer;">
+        <div class="port-thumb" style="background:linear-gradient(135deg,#2d6a4f,#52b788);">💆
+          <div class="port-overlay"><span>View Project ↗</span></div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Website · Ad Page</div>
+          <h3>H&amp;S Anti-Hairfall Ad</h3>
+          <p>Interactive product advertisement page for Head &amp; Shoulders with product reveal and CTA design.</p>
+          <div class="port-tools"><span class="port-tool">HTML</span><span class="port-tool">CSS</span><span class="port-tool">Product Design</span></div>
+        </div>
+      </div>
+
+      <div class="port-card reveal" data-cat="video" onclick="openVideo('sanskriti-intro.mp4','Sanskriti Creations Intro')" style="cursor:pointer;">
+        <div class="port-thumb" style="background:linear-gradient(135deg,#f7c5d0,#c2607a);">✨
+          <div class="port-overlay"><span>▶ Play Video</span></div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">AI Video · Brand</div>
+          <h3>Sanskriti Creations Intro</h3>
+          <p>Soft, minimal cinematic intro animation — pastel tones, floating pearls, and elegant typography.</p>
+          <div class="port-tools"><span class="port-tool">AI Video Gen</span><span class="port-tool">Motion</span><span class="port-tool">Branding</span></div>
+        </div>
+      </div>
+
+      <div class="port-card reveal" data-cat="video" onclick="openVideo('shampoo-reveal.mp4','Product Reveal — Shampoo')" style="cursor:pointer;">
+        <div class="port-thumb" style="background:linear-gradient(135deg,#2c2c54,#6c5ce7);">🎥
+          <div class="port-overlay"><span>▶ Play Video</span></div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">AI Video · Product</div>
+          <h3>Product Reveal — Shampoo</h3>
+          <p>Cinematic AI-generated product reveal shot — white & blue shampoo bottle rotating for marketing use.</p>
+          <div class="port-tools"><span class="port-tool">AI Video Gen</span><span class="port-tool">Product Ad</span></div>
+        </div>
+      </div>
+
+      <div class="port-card reveal" data-cat="brand" onclick="openImage('sanskriti-creations-logo.png','Sanskriti Creations Logo')" style="cursor:pointer;">
+        <div class="port-thumb" style="background:linear-gradient(135deg,#fce8ed,#f7c5d0);overflow:hidden;padding:0;position:relative;">
+          <img src="sanskriti-creations-logo.png" alt="Sanskriti Creations Logo" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"/>
+          <div class="port-overlay"><span>🔍 View Logo</span></div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Branding · Logo</div>
+          <h3>Sanskriti Creations Logo</h3>
+          <p>Enhanced elegance logo for personal brand — refined serif typography with a luxury editorial feel.</p>
+          <div class="port-tools"><span class="port-tool">AI Image Gen</span><span class="port-tool">Logo Design</span><span class="port-tool">Branding</span></div>
+        </div>
+      </div>
+
+      <!-- DATA ENTRY CARD -->
+      <div class="port-card reveal" data-cat="data" style="grid-column:span 2;">
+        <div class="port-thumb" style="background:linear-gradient(135deg,#e8f5e9,#a5d6a7);height:80px;font-size:2rem;">📊
+          <div class="port-overlay"><span>See Data Below ↓</span></div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Data Entry · Microsoft Excel</div>
+          <h3>Sample Data Entry Work — by Sanskriti Singh</h3>
+          <p>A structured Excel workbook showcasing professional data entry across 4 sheets: Customer Data, Employee Records, Product Catalogue, and Task Tracker.</p>
+          <div class="port-tools"><span class="port-tool">MS Excel</span><span class="port-tool">Data Entry</span><span class="port-tool">4 Sheets</span><span class="port-tool">Organised Data</span></div>
+        </div>
+        <!-- INLINE EXCEL SHOWCASE -->
+        <div class="excel-showcase">
+          <div class="excel-tabs">
+            <button class="excel-tab active" onclick="showSheet(this,'s1')">📋 Customer Data</button>
+            <button class="excel-tab" onclick="showSheet(this,'s2')">👥 Employee Records</button>
+            <button class="excel-tab" onclick="showSheet(this,'s3')">🛍️ Product List</button>
+            <button class="excel-tab" onclick="showSheet(this,'s4')">✅ Task Tracker</button>
+          </div>
+
+          <!-- Sheet 1: Customer Data -->
+          <div class="sheet-view active" id="s1">
+            <div class="sheet-title">Sheet 1 — Customer Data Entry</div>
+            <table class="data-table">
+              <thead><tr><th>Sr. No</th><th>Full Name</th><th>Email Address</th><th>Phone Number</th><th>Country</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Aman Sharma</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fc9d919d92bc9b919d9590d29f9391">[email&#160;protected]</a></td><td>9876543210</td><td>🇮🇳 India</td></tr>
+                <tr><td>2</td><td>Neha Verma</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a4cac1ccc5e4c3c9c5cdc88ac7cbc9">[email&#160;protected]</a></td><td>8765432109</td><td>🇮🇳 India</td></tr>
+                <tr><td>3</td><td>John D'Souza</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fb91949395bb9c969a9297d5989496">[email&#160;protected]</a></td><td>9988776655</td><td>🇺🇸 USA</td></tr>
+                <tr><td>4</td><td>Priya Malhotra</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b3c3c1dacad2f3d4ded2dadf9dd0dcde">[email&#160;protected]</a></td><td>9090909090</td><td>🇨🇦 Canada</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Sheet 2: Employee Records -->
+          <div class="sheet-view" id="s2">
+            <div class="sheet-title">Sheet 2 — Employee Records</div>
+            <table class="data-table">
+              <thead><tr><th>Emp ID</th><th>Name</th><th>Designation</th><th>Department</th><th>Basic Salary</th></tr></thead>
+              <tbody>
+                <tr><td>Emp_ID101</td><td>Aarav</td><td>Marketing Manager</td><td>Marketing</td><td>₹13,154</td></tr>
+                <tr><td>Emp_ID102</td><td>Ananya</td><td>Software Engineer</td><td>IT</td><td>₹13,155</td></tr>
+                <tr><td>Emp_ID103</td><td>Vihaan</td><td>HR Executive</td><td>Human Resources</td><td>₹13,156</td></tr>
+                <tr><td>Emp_ID104</td><td>Ishita</td><td>Accountant</td><td>Finance</td><td>₹13,157</td></tr>
+                <tr><td>Emp_ID105</td><td>Aryan</td><td>Operations Supervisor</td><td>Operations</td><td>₹13,158</td></tr>
+                <tr><td>Emp_ID106</td><td>Sanya</td><td>Marketing Manager</td><td>Marketing</td><td>₹13,159</td></tr>
+                <tr><td>Emp_ID107</td><td>Krishna</td><td>Software Engineer</td><td>IT</td><td>₹13,160</td></tr>
+                <tr><td>Emp_ID108</td><td>Meera</td><td>HR Executive</td><td>Human Resources</td><td>₹13,161</td></tr>
+                <tr><td>Emp_ID109</td><td>Rohan</td><td>Accountant</td><td>Finance</td><td>₹13,162</td></tr>
+                <tr><td>Emp_ID110</td><td>Tara</td><td>HR Executive</td><td>Human Resources</td><td>₹13,163</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Sheet 3: Product List -->
+          <div class="sheet-view" id="s3">
+            <div class="sheet-title">Sheet 3 — Product List</div>
+            <table class="data-table">
+              <thead><tr><th>Product ID</th><th>Product Name</th><th>Category</th><th>Price</th><th>In Stock</th></tr></thead>
+              <tbody>
+                <tr><td>P001</td><td>Wireless Mouse</td><td>Electronics</td><td>₹699</td><td><span class="badge-yes">YES</span></td></tr>
+                <tr><td>P002</td><td>Gel Pen Set</td><td>Stationery</td><td>₹120</td><td><span class="badge-yes">YES</span></td></tr>
+                <tr><td>P003</td><td>Notebook A5</td><td>Stationery</td><td>₹90</td><td><span class="badge-no">NO</span></td></tr>
+                <tr><td>P004</td><td>USB Cable</td><td>Electronics</td><td>₹199</td><td><span class="badge-yes">YES</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Sheet 4: Task Tracker -->
+          <div class="sheet-view" id="s4">
+            <div class="sheet-title">Sheet 4 — Task Tracker</div>
+            <table class="data-table">
+              <thead><tr><th>Date</th><th>Task Description</th><th>Status</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>20 Jun 2025</td><td>Entered customer details</td><td><span class="badge-done">COMPLETED</span></td><td>Double-checked email</td></tr>
+                <tr><td>21 Jun 2025</td><td>Updated product prices</td><td><span class="badge-pending">PENDING</span></td><td>Prices from Amazon</td></tr>
+                <tr><td>21 Jun 2025</td><td>Created invoice spreadsheet</td><td><span class="badge-done">COMPLETED</span></td><td>Sent via email</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">✿ My Journey</p>
+      <h2 class="section-title">Work <em>Experience</em></h2>
+    </div>
+    <div class="exp-timeline">
+      <div class="exp-item reveal">
+        <div class="exp-dot"><i class="fas fa-code"></i></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-title">Website Developer</div>
+              <div class="exp-company">dndlogistics.in &nbsp;·&nbsp; Freelance · Remote, Delhi</div>
+            </div>
+            <span class="exp-date">Dec 2025 – Jan 2026</span>
+          </div>
+          <ul class="exp-list">
+            <li>Designed and developed a responsive logistics company website using HTML, CSS, and JavaScript</li>
+            <li>Created multi-page site (Home, About, Services, Contact) to present cargo & freight solutions</li>
+            <li>Optimised layout for mobile devices, fast loading, and integrated enquiry sections for clients</li>
+            <li>Implemented a clean, professional UI suitable for a transportation and logistics business</li>
+            <li>Ensured smooth navigation and user-friendly experience for potential clients</li>
+          </ul>
+          <div class="exp-achievement">🏆 Successfully launched D&D Logistics' professional online presence, boosting digital visibility and credibility for freight forwarding and supply chain services.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">✿ My Learning</p>
+      <h2 class="section-title">Education &amp; <em>Background</em></h2>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-year">2025</div>
+        <h3>Bachelor of Business Administration</h3>
+        <p>IGNOU University, Delhi</p>
+        <span class="edu-badge">2025 – 2028 · Pursuing</span>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2025</div>
+        <h3>Senior Secondary (XII) — Commerce</h3>
+        <p>Govt. Girls Senior Secondary School, Devli, Sangam Vihar, New Delhi</p>
+        <span class="edu-badge">CBSE Board</span>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2023</div>
+        <h3>Secondary (X)</h3>
+        <p>Govt. Girls Senior Secondary School, Devli, Sangam Vihar, New Delhi</p>
+        <span class="edu-badge">CBSE Board</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">✿ My Credentials</p>
+      <h2 class="section-title">Certifications &amp; <em>Training</em></h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-briefcase"></i></div>
+        <h3>Freedom Employability Academy (FEA)</h3>
+        <p>Employability skills, English, digital literacy, career guidance & mentorship.</p>
+        <div class="cert-date">SEP 2024 – JUN 2025</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-file-excel"></i></div>
+        <h3>CCAWE — Advanced Word & Excel</h3>
+        <p>Advanced Microsoft Word and Excel skills for professional documentation and data management.</p>
+        <div class="cert-date">OCT 2023 – MAR 2024</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-laptop"></i></div>
+        <h3>CCIB — Certificate in Business & IT</h3>
+        <p>Business and IT fundamentals covering digital tools and business communication.</p>
+        <div class="cert-date">APR 2023 – SEP 2023</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-computer"></i></div>
+        <h3>CCAB — Active Basic IT</h3>
+        <p>Foundational computer skills, MS Office suite, and essential IT knowledge for the workplace.</p>
+        <div class="cert-date">APR 2023 – SEP 2023</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-star"></i></div>
+        <h3>Personality Development & Communication</h3>
+        <p>Professional communication, public speaking, and soft skills training.</p>
+        <div class="cert-date">APR 2023 – MAR 2024</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-bullseye"></i></div>
+        <h3>Digital Marketing Course</h3>
+        <p>Comprehensive digital marketing including email campaigns, website design, HTML, CSS & JavaScript.</p>
+        <div class="cert-date">2025 – ONGOING</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">✿ Say Hello</p>
+      <h2 class="section-title">Let's Work <em>Together</em></h2>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-info reveal">
+        <h3>I'd love to hear from you ✿</h3>
+        <p>Whether you have a project in mind, want to collaborate, or just want to say hi — my inbox is always open. I'm currently available for internships and freelance opportunities.</p>
+        <div class="contact-items">
+          <div class="contact-item"><div class="c-icon"><i class="fas fa-envelope"></i></div><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1f6c6c7e716c746d766b762f2f2f275f78727e7673317c7072">[email&#160;protected]</a></span></div>
+          <div class="contact-item"><div class="c-icon"><i class="fas fa-phone"></i></div><span>+91 8851332118</span></div>
+          <div class="contact-item"><div class="c-icon"><i class="fas fa-map-marker-alt"></i></div><span>Delhi, India</span></div>
+          <div class="contact-item"><div class="c-icon"><i class="fab fa-linkedin"></i></div><span>linkedin.com/in/sanskriti-singh-4992a927a</span></div>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <div class="form-group"><label>Your Name</label><input type="text" placeholder="What's your name?"/></div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Tell me about your project or opportunity..."></textarea></div>
+        <button class="btn-primary" style="width:100%;">Send Message ✿</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div id="videoModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9000;align-items:center;justify-content:center;flex-direction:column;gap:16px;">
+  <div style="position:relative;width:min(860px,92vw);">
+    <p id="modalTitle" style="color:#f7c5d0;font-family:'Dancing Script',cursive;font-size:1.5rem;margin-bottom:10px;text-align:center;"></p>
+    <video id="modalVideo" controls style="width:100%;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,0.6);"></video>
+    <button onclick="closeVideo()" style="position:absolute;top:-14px;right:-14px;width:38px;height:38px;border-radius:50%;background:#c2607a;border:none;color:white;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(194,96,122,0.5);">✕</button>
+  </div>
+</div>
+
+<!-- IMAGE LIGHTBOX -->
+<div id="imgLightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9000;align-items:center;justify-content:center;flex-direction:column;gap:16px;">
+  <div style="position:relative;max-width:min(700px,90vw);">
+    <p id="lightboxTitle" style="color:#f7c5d0;font-family:'Dancing Script',cursive;font-size:1.5rem;margin-bottom:10px;text-align:center;"></p>
+    <img id="lightboxImg" src="" alt="Logo" style="width:100%;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,0.6);"/>
+    <button onclick="closeImage()" style="position:absolute;top:-14px;right:-14px;width:38px;height:38px;border-radius:50%;background:#c2607a;border:none;color:white;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(194,96,122,0.5);">✕</button>
+  </div>
+</div>
+
+<footer>
+  <p>Crafted with <span class="heart">♥</span> by <span>Sanskriti Singh</span> &nbsp;·&nbsp; Delhi, India &nbsp;·&nbsp; © 2026</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// CURSOR
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';
+  setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},60);
+});
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.width='54px';ring.style.height='54px';});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';ring.style.width='36px';ring.style.height='36px';});
+});
+
+// CHERRY BLOSSOMS
+const canvas=document.getElementById('blossom-canvas');
+const ctx=canvas.getContext('2d');
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resize();window.addEventListener('resize',resize);
+const petals=[];
+function rnd(a,b){return a+Math.random()*(b-a);}
+function newPetal(){
+  return{x:rnd(-60,canvas.width+60),y:rnd(-80,-10),size:rnd(6,17),
+    vy:rnd(0.6,1.8),vx:rnd(-0.4,0.7),rot:rnd(0,Math.PI*2),
+    rs:rnd(-0.015,0.015),sway:rnd(0.3,1.1),so:rnd(0,Math.PI*2),
+    op:rnd(0.45,0.85),
+    col:['#f7c5d0','#f0a0b8','#fce8ed','#e8b4c3','#ffb7c5'][Math.floor(Math.random()*5)]};
+}
+for(let i=0;i<55;i++){const p=newPetal();p.y=rnd(-80,canvas.height);petals.push(p);}
+let fr=0;
+function drawPetal(p){
+  ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);
+  ctx.globalAlpha=p.op;ctx.fillStyle=p.col;
+  ctx.beginPath();
+  ctx.moveTo(0,-p.size);
+  ctx.bezierCurveTo(p.size*0.8,-p.size*0.6,p.size*0.8,p.size*0.6,0,p.size*0.3);
+  ctx.bezierCurveTo(-p.size*0.8,p.size*0.6,-p.size*0.8,-p.size*0.6,0,-p.size);
+  ctx.fill();
+  ctx.globalAlpha=p.op*0.2;ctx.fillStyle='#fff';
+  ctx.beginPath();ctx.ellipse(0,-p.size*0.2,p.size*0.22,p.size*0.45,0,0,Math.PI*2);ctx.fill();
+  ctx.restore();
+}
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);fr++;
+  petals.forEach(p=>{
+    p.y+=p.vy;p.x+=p.vx+Math.sin(fr*0.012+p.so)*p.sway;p.rot+=p.rs;
+    drawPetal(p);
+    if(p.y>canvas.height+30||p.x<-80||p.x>canvas.width+80)Object.assign(p,newPetal());
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// FILTER
+function filterPort(btn,cat){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.port-card').forEach(c=>{
+    c.classList.toggle('hidden', cat!=='all' && c.dataset.cat!==cat);
+  });
+}
+
+// EXCEL TABS
+function showSheet(btn,id){
+  document.querySelectorAll('.excel-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.sheet-view').forEach(s=>s.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+// VIDEO MODAL
+function openVideo(src, title){
+  const modal = document.getElementById('videoModal');
+  const vid = document.getElementById('modalVideo');
+  const lbl = document.getElementById('modalTitle');
+  vid.src = src;
+  lbl.textContent = title;
+  modal.style.display = 'flex';
+  vid.play();
+}
+function closeVideo(){
+  const modal = document.getElementById('videoModal');
+  const vid = document.getElementById('modalVideo');
+  vid.pause();
+  vid.src = '';
+  modal.style.display = 'none';
+}
+
+// IMAGE LIGHTBOX
+function openImage(src, title){
+  const lb = document.getElementById('imgLightbox');
+  const img = document.getElementById('lightboxImg');
+  const lbl = document.getElementById('lightboxTitle');
+  img.src = src;
+  lbl.textContent = title;
+  lb.style.display = 'flex';
+}
+function closeImage(){
+  document.getElementById('imgLightbox').style.display = 'none';
+}
+
+// Close modals on backdrop click
+document.getElementById('videoModal').addEventListener('click', function(e){ if(e.target===this) closeVideo(); });
+document.getElementById('imgLightbox').addEventListener('click', function(e){ if(e.target===this) closeImage(); });
+</script>
+</body>
+</html>

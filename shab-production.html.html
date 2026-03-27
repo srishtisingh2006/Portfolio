@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHAB PRODUCTION — Where Stories Come Alive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C87A;
+  --gold-pale: rgba(201,168,76,0.12);
+  --black: #060504;
+  --ink: #0E0C0A;
+  --smoke: #1A1714;
+  --ash: #777068;
+  --silver: #C2BBAF;
+  --white: #F5F0E8;
+  --font-d: 'Bebas Neue', sans-serif;
+  --font-s: 'Cormorant Garamond', serif;
+  --font-b: 'DM Sans', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: var(--font-b); overflow-x: hidden; cursor: none; }
+
+/* CURSOR */
+#cur, #cur2 { position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform .08s, width .25s, height .25s, opacity .25s; }
+#cur { width: 10px; height: 10px; background: var(--gold); }
+#cur2 { width: 38px; height: 38px; border: 1px solid rgba(201,168,76,.5); background: transparent; transition: transform .2s ease, width .3s, height .3s; }
+
+/* GRAIN */
+body::after { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E"); pointer-events:none; z-index:9998; }
+
+/* NAV */
+nav { position:fixed; top:0; width:100%; z-index:1000; padding:28px 64px; display:flex; align-items:center; justify-content:space-between; transition: all .4s ease; }
+nav.scrolled { padding:18px 64px; background:rgba(6,5,4,.96); border-bottom:1px solid rgba(201,168,76,.12); backdrop-filter:blur(16px); }
+.logo { text-decoration:none; display:flex; flex-direction:column; line-height:1; }
+.logo-main { font-family:var(--font-d); font-size:30px; letter-spacing:.22em; color:var(--gold); }
+.logo-sub { font-family:var(--font-s); font-style:italic; font-size:10px; letter-spacing:.4em; color:var(--ash); margin-top:3px; }
+.nav-links { display:flex; gap:36px; list-style:none; }
+.nav-links a { font-size:10px; letter-spacing:.32em; text-transform:uppercase; color:var(--silver); text-decoration:none; position:relative; transition:color .3s; }
+.nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1px; background:var(--gold); transition:width .35s ease; }
+.nav-links a:hover { color:var(--gold); }
+.nav-links a:hover::after { width:100%; }
+.nav-cta { padding:10px 26px; border:1px solid var(--gold); font-size:9px; letter-spacing:.35em; text-transform:uppercase; color:var(--gold); background:transparent; cursor:none; transition:all .3s; font-family:var(--font-b); }
+.nav-cta:hover { background:var(--gold); color:var(--black); }
+
+/* HERO */
+#hero { height:100vh; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.hero-bg { position:absolute; inset:0; background: radial-gradient(ellipse 90% 70% at 50% 45%, rgba(201,168,76,.07) 0%, transparent 65%), linear-gradient(160deg,#0a0702 0%,#060504 60%,#0a0804 100%); }
+/* animated light beam */
+.beam { position:absolute; top:-10%; left:50%; width:2px; height:140%; background:linear-gradient(to bottom, transparent, rgba(201,168,76,.08), transparent); transform:translateX(-50%) rotate(-8deg); transform-origin:top; animation:beamSway 8s ease-in-out infinite alternate; }
+.beam2 { left:35%; transform:translateX(-50%) rotate(6deg); animation-delay:-4s; opacity:.5; }
+@keyframes beamSway { from{transform:translateX(-50%) rotate(-8deg);} to{transform:translateX(-50%) rotate(8deg);} }
+
+/* film strip decoration */
+.strip { position:absolute; display:flex; gap:0; opacity:.1; }
+.strip-top { top:0; left:0; right:0; flex-direction:row; height:44px; align-items:center; }
+.strip-bottom { bottom:0; left:0; right:0; flex-direction:row; height:44px; align-items:center; }
+.hole { min-width:30px; height:22px; border:1.5px solid var(--gold); border-radius:3px; margin:0 6px; }
+.strip-line { position:absolute; left:0; right:0; height:1px; background:var(--gold); opacity:.8; }
+.strip-top .strip-line:nth-child(1){top:6px;} .strip-top .strip-line:nth-child(2){bottom:6px;}
+.strip-bottom .strip-line:nth-child(1){top:6px;} .strip-bottom .strip-line:nth-child(2){bottom:6px;}
+
+.hero-content { position:relative; z-index:2; text-align:center; max-width:920px; padding:0 40px; }
+.hero-eyebrow { font-family:var(--font-s); font-style:italic; font-size:20px; color:var(--gold); letter-spacing:.08em; margin-bottom:20px; opacity:0; animation:fadeUp .9s .4s ease forwards; }
+.hero-title { font-family:var(--font-d); font-size:clamp(80px,15vw,170px); line-height:.86; letter-spacing:.07em; color:var(--white); margin-bottom:8px; opacity:0; animation:fadeUp 1s .1s ease forwards; }
+.hero-title em { color:var(--gold); font-style:normal; }
+.hero-line2 { font-family:var(--font-d); font-size:clamp(22px,4vw,46px); letter-spacing:.42em; color:var(--ash); margin-bottom:36px; opacity:0; animation:fadeUp .9s .2s ease forwards; }
+.hero-tagline { font-family:var(--font-s); font-size:19px; font-style:italic; color:var(--silver); margin-bottom:12px; opacity:0; animation:fadeUp .9s .5s ease forwards; }
+.hero-est { font-size:10px; letter-spacing:.5em; text-transform:uppercase; color:var(--ash); margin-bottom:52px; opacity:0; animation:fadeUp .9s .6s ease forwards; }
+.hero-btns { display:flex; gap:18px; justify-content:center; flex-wrap:wrap; opacity:0; animation:fadeUp .9s .7s ease forwards; }
+.btn-g { padding:15px 44px; background:var(--gold); color:var(--black); font-size:10px; font-weight:500; letter-spacing:.35em; text-transform:uppercase; text-decoration:none; transition:all .3s; }
+.btn-g:hover { background:var(--gold-light); transform:translateY(-2px); }
+.btn-o { padding:15px 44px; border:1px solid rgba(201,168,76,.4); color:var(--gold); font-size:10px; letter-spacing:.35em; text-transform:uppercase; text-decoration:none; transition:all .3s; }
+.btn-o:hover { border-color:var(--gold); background:rgba(201,168,76,.06); }
+.scroll-hint { position:absolute; bottom:36px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; opacity:0; animation:fadeUp .9s 1.2s ease forwards; }
+.scroll-hint span { font-size:8px; letter-spacing:.5em; text-transform:uppercase; color:var(--ash); }
+.scroll-line { width:1px; height:50px; background:linear-gradient(to bottom, var(--gold), transparent); animation:scrollPulse 2s ease-in-out infinite; }
+@keyframes scrollPulse { 0%,100%{opacity:.3;transform:scaleY(.6);transform-origin:top;} 50%{opacity:1;transform:scaleY(1);} }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(32px);} to{opacity:1;transform:translateY(0);} }
+
+/* SECTION BASE */
+section { padding:120px 64px; }
+.sec-label { font-size:9px; letter-spacing:.55em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; display:block; }
+.sec-title { font-family:var(--font-d); font-size:clamp(42px,7vw,88px); line-height:.9; letter-spacing:.04em; margin-bottom:24px; }
+.sec-body { font-family:var(--font-s); font-size:19px; line-height:1.75; color:var(--silver); font-weight:300; }
+.divider { width:60px; height:1px; background:var(--gold); margin:32px 0; }
+
+/* ABOUT */
+#about { background:var(--ink); position:relative; overflow:hidden; }
+#about::before { content:'12'; font-family:var(--font-d); font-size:380px; color:rgba(201,168,76,.025); position:absolute; right:-40px; top:50%; transform:translateY(-50%); line-height:1; pointer-events:none; }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; max-width:1300px; margin:0 auto; }
+.about-stats { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:48px; }
+.stat-box { background:var(--smoke); padding:32px 28px; position:relative; overflow:hidden; }
+.stat-box::before { content:''; position:absolute; top:0; left:0; width:2px; height:100%; background:var(--gold); }
+.stat-num { font-family:var(--font-d); font-size:52px; color:var(--gold); line-height:1; }
+.stat-lbl { font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--ash); margin-top:6px; }
+.about-visual { position:relative; }
+.about-frame { width:100%; aspect-ratio:3/4; background:var(--smoke); position:relative; overflow:hidden; }
+.about-frame-inner { position:absolute; inset:16px; border:1px solid rgba(201,168,76,.2); display:flex; align-items:center; justify-content:center; }
+.about-frame-inner::before { content:''; position:absolute; inset:0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(201,168,76,.03) 3px, rgba(201,168,76,.03) 4px); }
+.reel-icon { font-size:80px; opacity:.15; }
+.about-badge { position:absolute; bottom:-20px; right:-20px; width:120px; height:120px; background:var(--gold); display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.badge-num { font-family:var(--font-d); font-size:42px; color:var(--black); line-height:1; }
+.badge-txt { font-size:8px; letter-spacing:.2em; text-transform:uppercase; color:var(--black); text-align:center; margin-top:2px; }
+
+/* SERVICES */
+#services { background:var(--black); }
+.services-header { max-width:1300px; margin:0 auto 64px; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; }
+.services-grid { max-width:1300px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+.srv-card { background:var(--smoke); padding:40px 32px 36px; position:relative; overflow:hidden; transition:all .4s ease; group: 1; }
+.srv-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--gold); transform:scaleX(0); transition:transform .4s ease; transform-origin:left; }
+.srv-card:hover { background:var(--ink); transform:translateY(-6px); }
+.srv-card:hover::after { transform:scaleX(1); }
+.srv-num { font-family:var(--font-d); font-size:60px; color:rgba(201,168,76,.1); line-height:1; margin-bottom:16px; transition:color .3s; }
+.srv-card:hover .srv-num { color:rgba(201,168,76,.25); }
+.srv-icon { font-size:28px; margin-bottom:16px; display:block; }
+.srv-title { font-family:var(--font-s); font-size:22px; font-weight:600; color:var(--white); margin-bottom:12px; line-height:1.2; }
+.srv-desc { font-size:13px; line-height:1.7; color:var(--ash); }
+
+/* PORTFOLIO */
+#portfolio { background:var(--ink); }
+.port-header { max-width:1300px; margin:0 auto 64px; }
+.port-filter { display:flex; gap:24px; flex-wrap:wrap; margin-top:32px; }
+.filter-btn { font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--ash); background:none; border:none; cursor:none; padding:8px 0; position:relative; transition:color .3s; font-family:var(--font-b); }
+.filter-btn::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1px; background:var(--gold); transition:width .3s; }
+.filter-btn.active, .filter-btn:hover { color:var(--gold); }
+.filter-btn.active::after, .filter-btn:hover::after { width:100%; }
+.port-grid { max-width:1300px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:3px; }
+.port-item { aspect-ratio:16/10; position:relative; overflow:hidden; background:var(--smoke); cursor:none; }
+.port-item.big { grid-column:span 2; aspect-ratio:unset; }
+.port-thumb { width:100%; height:100%; display:flex; align-items:center; justify-content:center; position:relative; }
+.port-thumb-bg { position:absolute; inset:0; transition:transform .6s ease; }
+.port-item:hover .port-thumb-bg { transform:scale(1.06); }
+.port-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(6,5,4,.95) 0%, rgba(6,5,4,.3) 50%, transparent 100%); opacity:0; transition:opacity .4s; display:flex; flex-direction:column; justify-content:flex-end; padding:28px; }
+.port-item:hover .port-overlay { opacity:1; }
+.port-cat { font-size:9px; letter-spacing:.4em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.port-name { font-family:var(--font-s); font-size:22px; font-weight:600; color:var(--white); }
+.port-year { font-size:11px; color:var(--ash); margin-top:4px; }
+.port-placeholder { font-size:48px; opacity:.08; }
+
+/* CLIENTS */
+#clients { background:var(--black); }
+.clients-wrap { max-width:1300px; margin:0 auto; }
+.clients-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:2px; margin-top:56px; }
+.client-box { background:var(--smoke); padding:36px 24px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; transition:all .3s; border:1px solid transparent; }
+.client-box:hover { border-color:rgba(201,168,76,.2); background:var(--ink); }
+.client-icon { font-size:32px; opacity:.4; }
+.client-name { font-family:var(--font-s); font-size:15px; font-weight:600; color:var(--silver); text-align:center; letter-spacing:.05em; }
+
+/* PROCESS */
+#process { background:var(--ink); }
+.process-wrap { max-width:1300px; margin:0 auto; }
+.process-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:0; margin-top:64px; position:relative; }
+.process-steps::before { content:''; position:absolute; top:36px; left:10%; right:10%; height:1px; background:linear-gradient(to right, transparent, var(--gold), transparent); opacity:.3; }
+.step { display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 16px; position:relative; }
+.step-num { width:72px; height:72px; border:1px solid rgba(201,168,76,.3); display:flex; align-items:center; justify-content:center; font-family:var(--font-d); font-size:28px; color:var(--gold); margin-bottom:24px; background:var(--ink); position:relative; z-index:1; transition:all .3s; }
+.step:hover .step-num { background:var(--gold); color:var(--black); border-color:var(--gold); }
+.step-title { font-family:var(--font-s); font-size:17px; font-weight:600; color:var(--white); margin-bottom:10px; }
+.step-desc { font-size:12px; line-height:1.7; color:var(--ash); }
+
+/* TESTIMONIALS */
+#testimonials { background:var(--black); overflow:hidden; }
+.test-wrap { max-width:1300px; margin:0 auto; }
+.test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:56px; }
+.test-card { background:var(--smoke); padding:44px 36px; position:relative; }
+.test-card::before { content:'"'; font-family:var(--font-s); font-size:120px; color:rgba(201,168,76,.08); position:absolute; top:-10px; left:24px; line-height:1; }
+.test-stars { color:var(--gold); font-size:13px; letter-spacing:3px; margin-bottom:20px; }
+.test-text { font-family:var(--font-s); font-size:17px; font-style:italic; line-height:1.75; color:var(--silver); margin-bottom:28px; }
+.test-author { display:flex; align-items:center; gap:14px; }
+.test-avatar { width:44px; height:44px; background:var(--gold-pale); border:1px solid rgba(201,168,76,.3); display:flex; align-items:center; justify-content:center; font-family:var(--font-d); font-size:18px; color:var(--gold); border-radius:50%; }
+.test-name { font-size:13px; font-weight:500; color:var(--white); }
+.test-role { font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--ash); margin-top:2px; }
+.rating-badge { display:inline-flex; align-items:center; gap:10px; background:var(--smoke); padding:14px 24px; margin-top:48px; }
+.rating-score { font-family:var(--font-d); font-size:42px; color:var(--gold); line-height:1; }
+.rating-info { display:flex; flex-direction:column; }
+.rating-stars { color:var(--gold); font-size:14px; }
+.rating-count { font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--ash); margin-top:3px; }
+
+/* CONTACT */
+#contact { background:var(--ink); position:relative; overflow:hidden; }
+#contact::before { content:'ACTION'; font-family:var(--font-d); font-size:320px; color:rgba(201,168,76,.02); position:absolute; left:-40px; bottom:-60px; line-height:1; pointer-events:none; white-space:nowrap; }
+.contact-grid { max-width:1300px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+.contact-info { }
+.contact-detail { display:flex; gap:20px; align-items:flex-start; margin-bottom:36px; }
+.c-icon { width:44px; height:44px; border:1px solid rgba(201,168,76,.2); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; margin-top:2px; }
+.c-label { font-size:9px; letter-spacing:.4em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.c-value { font-family:var(--font-s); font-size:18px; color:var(--white); }
+.c-value a { color:var(--white); text-decoration:none; transition:color .3s; }
+.c-value a:hover { color:var(--gold); }
+.socials { display:flex; gap:14px; margin-top:48px; }
+.social-link { width:44px; height:44px; border:1px solid rgba(201,168,76,.2); display:flex; align-items:center; justify-content:center; color:var(--ash); text-decoration:none; font-size:14px; transition:all .3s; }
+.social-link:hover { border-color:var(--gold); color:var(--gold); background:rgba(201,168,76,.06); }
+.contact-form { }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-bottom:2px; }
+.form-field { position:relative; }
+.form-field input, .form-field textarea, .form-field select {
+  width:100%; padding:20px 20px; background:var(--smoke);
+  border:1px solid transparent; color:var(--white);
+  font-family:var(--font-b); font-size:14px;
+  outline:none; transition:border-color .3s; resize:none;
+  appearance:none; -webkit-appearance:none;
+}
+.form-field input::placeholder, .form-field textarea::placeholder { color:var(--ash); }
+.form-field input:focus, .form-field textarea:focus, .form-field select:focus { border-color:rgba(201,168,76,.4); }
+.form-field textarea { height:140px; }
+.form-field select { background:var(--smoke); color:var(--ash); }
+.form-field select option { background:var(--smoke); }
+.form-submit { width:100%; margin-top:2px; padding:20px; background:var(--gold); color:var(--black); font-family:var(--font-b); font-size:11px; font-weight:500; letter-spacing:.4em; text-transform:uppercase; border:none; cursor:none; transition:all .35s; }
+.form-submit:hover { background:var(--gold-light); }
+
+/* FOOTER */
+footer { background:var(--black); border-top:1px solid rgba(201,168,76,.1); padding:60px 64px 40px; }
+.footer-inner { max-width:1300px; margin:0 auto; }
+.footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; margin-bottom:60px; }
+.footer-logo { font-family:var(--font-d); font-size:36px; letter-spacing:.22em; color:var(--gold); display:block; margin-bottom:12px; }
+.footer-tagline { font-family:var(--font-s); font-style:italic; font-size:16px; color:var(--ash); margin-bottom:24px; }
+.footer-about { font-size:13px; line-height:1.8; color:var(--ash); max-width:300px; }
+.footer-col h4 { font-size:10px; letter-spacing:.4em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:12px; }
+.footer-col a { font-size:13px; color:var(--ash); text-decoration:none; transition:color .3s; }
+.footer-col a:hover { color:var(--white); }
+.footer-bottom { border-top:1px solid rgba(255,255,255,.06); padding-top:28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+.footer-copy { font-size:11px; color:var(--ash); letter-spacing:.1em; }
+.footer-copy span { color:var(--gold); }
+.footer-meta { font-size:11px; color:var(--ash); }
+
+/* REVEAL ANIMATIONS */
+.reveal { opacity:0; transform:translateY(40px); transition:opacity .8s ease, transform .8s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-left { opacity:0; transform:translateX(-40px); transition:opacity .8s ease, transform .8s ease; }
+.reveal-left.visible { opacity:1; transform:translateX(0); }
+.reveal-right { opacity:0; transform:translateX(40px); transition:opacity .8s ease, transform .8s ease; }
+.reveal-right.visible { opacity:1; transform:translateX(0); }
+
+/* MARQUEE */
+.marquee-wrap { background:var(--gold); padding:16px 0; overflow:hidden; }
+.marquee-track { display:flex; gap:0; white-space:nowrap; animation:marquee 22s linear infinite; }
+.marquee-item { font-family:var(--font-d); font-size:22px; letter-spacing:.15em; color:var(--black); padding:0 40px; display:flex; align-items:center; gap:24px; }
+.marquee-dot { width:6px; height:6px; background:rgba(0,0,0,.3); border-radius:50%; }
+@keyframes marquee { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+/* MOBILE */
+@media (max-width: 900px) {
+  nav { padding:20px 24px; }
+  nav.scrolled { padding:14px 24px; }
+  .nav-links { display:none; }
+  section { padding:80px 24px; }
+  .hero-title { font-size: clamp(60px, 18vw, 100px); }
+  .about-grid, .contact-grid { grid-template-columns:1fr; gap:48px; }
+  .services-grid { grid-template-columns:repeat(2,1fr); }
+  .port-grid { grid-template-columns:1fr 1fr; }
+  .port-item.big { grid-column:span 2; }
+  .clients-grid { grid-template-columns:repeat(3,1fr); }
+  .process-steps { grid-template-columns:1fr 1fr; gap:32px; }
+  .process-steps::before { display:none; }
+  .test-grid { grid-template-columns:1fr; }
+  .footer-top { grid-template-columns:1fr 1fr; gap:40px; }
+  footer { padding:48px 24px 32px; }
+}
+@media (max-width:580px) {
+  .services-grid { grid-template-columns:1fr; }
+  .clients-grid { grid-template-columns:repeat(2,1fr); }
+  .process-steps { grid-template-columns:1fr; }
+  .port-grid { grid-template-columns:1fr; }
+  .port-item.big { grid-column:span 1; }
+  .footer-top { grid-template-columns:1fr; }
+  .form-row { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">
+    <span class="logo-main">SHAB</span>
+    <span class="logo-sub">Production · Est. 2012</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Start a Project</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="beam"></div>
+  <div class="beam beam2"></div>
+  <!-- film strips -->
+  <div class="strip strip-top">
+    <div class="strip-line"></div>
+    <div class="strip-line"></div>
+    <div id="holes-top"></div>
+  </div>
+  <div class="strip strip-bottom">
+    <div class="strip-line"></div>
+    <div class="strip-line"></div>
+    <div id="holes-bottom"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">New Delhi's Premier</p>
+    <h1 class="hero-title"><em>SHAB</em></h1>
+    <h2 class="hero-line2">PRODUCTION</h2>
+    <p class="hero-tagline">"We don't just make videos — we craft stories that outlive the moment."</p>
+    <p class="hero-est">Established 2012 &nbsp;·&nbsp; New Delhi, India &nbsp;·&nbsp; 12+ Years of Excellence</p>
+    <div class="hero-btns">
+      <a href="#portfolio" class="btn-g">View Our Work</a>
+      <a href="#contact" class="btn-o">Get In Touch</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Feature Films <span class="marquee-dot"></span></span>
+    <span class="marquee-item">TV Commercials <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Web Series <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Music Videos <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Corporate Films <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Documentaries <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Brand Films <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Line Production <span class="marquee-dot"></span></span>
+    <!-- repeat -->
+    <span class="marquee-item">Feature Films <span class="marquee-dot"></span></span>
+    <span class="marquee-item">TV Commercials <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Web Series <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Music Videos <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Corporate Films <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Documentaries <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Brand Films <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Line Production <span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="reveal-left">
+      <span class="sec-label">Our Story</span>
+      <h2 class="sec-title">Full Service.<br>Full Heart.</h2>
+      <div class="divider"></div>
+      <p class="sec-body">SHAB PRODUCTION is a full-service Creative Digital Video Production company headquartered in New Delhi. For over <strong style="color:var(--white)">12 years</strong>, we've been turning raw ideas into compelling visual narratives — working with brands, broadcasters, creators, and agencies across India and beyond.</p>
+      <p class="sec-body" style="margin-top:18px;">From a single-person interview to a multi-city feature film shoot, we bring the same level of passion, precision, and creative fire to every production. Our team thrives on collaboration, and when you work with us — you'll feel that enthusiasm from day one.</p>
+      <div class="about-stats">
+        <div class="stat-box"><div class="stat-num">12+</div><div class="stat-lbl">Years Experience</div></div>
+        <div class="stat-box"><div class="stat-num">4.9</div><div class="stat-lbl">Google Rating</div></div>
+        <div class="stat-box"><div class="stat-num">500+</div><div class="stat-lbl">Projects Delivered</div></div>
+        <div class="stat-box"><div class="stat-num">24/7</div><div class="stat-lbl">Available</div></div>
+      </div>
+    </div>
+    <div class="about-visual reveal-right">
+      <div class="about-frame">
+        <div class="about-frame-inner">
+          <div style="text-align:center; position:relative; z-index:1;">
+            <div style="font-size:80px; opacity:.12;">🎬</div>
+            <p style="font-family:var(--font-d); font-size:32px; letter-spacing:.2em; color:var(--gold); margin-top:16px;">SINCE</p>
+            <p style="font-family:var(--font-d); font-size:80px; color:rgba(201,168,76,.6); line-height:1; letter-spacing:.05em;">2012</p>
+            <p style="font-size:11px; letter-spacing:.4em; text-transform:uppercase; color:var(--ash); margin-top:8px;">New Delhi · India</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-badge">
+        <div class="badge-num">★4.9</div>
+        <div class="badge-txt">Google Reviews</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div>
+      <span class="sec-label">What We Do</span>
+      <h2 class="sec-title">Our Services</h2>
+    </div>
+    <p style="font-family:var(--font-s); font-style:italic; font-size:18px; color:var(--ash); max-width:360px;">Every format, every scale, every vision — we've got the team and the tools.</p>
+  </div>
+  <div class="services-grid">
+    <div class="srv-card reveal" style="transition-delay:.05s">
+      <div class="srv-num">01</div>
+      <span class="srv-icon">🎬</span>
+      <h3 class="srv-title">Feature Films & Digital Movies</h3>
+      <p class="srv-desc">Full-scale feature film production from concept to post. We handle casting, direction, cinematography, and delivery for both theatrical and OTT platforms.</p>
+    </div>
+    <div class="srv-card reveal" style="transition-delay:.1s">
+      <div class="srv-num">02</div>
+      <span class="srv-icon">📺</span>
+      <h3 class="srv-title">TV Commercials & Brand Films</h3>
+      <p class="srv-desc">High-impact advertising content that sells. From 30-second spots to cinematic brand stories, we craft visuals that make audiences stop and feel.</p>
+    </div>
+    <div class="srv-card reveal" style="transition-delay:.15s">
+      <div class="srv-num">03</div>
+      <span class="srv-icon">🏢</span>
+      <h3 class="srv-title">Corporate Video Production</h3>
+      <p class="srv-desc">Professional corporate films, training videos, testimonials, interviews, and internal communications — produced to reflect your brand's stature.</p>
+    </div>
+    <div class="srv-card reveal" style="transition-delay:.2s">
+      <div class="srv-num">04</div>
+      <span class="srv-icon">🎵</span>
+      <h3 class="srv-title">Music Video Production</h3>
+      <p class="srv-desc">Creative, visually arresting music videos for independent artists and major labels. We understand rhythm, narrative, and the art of visual music.</p>
+    </div>
+    <div class="srv-card reveal" style="transition-delay:.25s">
+      <div class="srv-num">05</div>
+      <span class="srv-icon">📱</span>
+      <h3 class="srv-title">Web Series & OTT Content</h3>
+      <p class="srv-desc">End-to-end web series production for YouTube, Netflix, Amazon Prime and more. We manage scripts, shoots, post-production and platform delivery.</p>
+    </div>
+    <div class="srv-card reveal" style="transition-delay:.3s">
+      <div class="srv-num">06</div>
+      <span class="srv-icon">🎞️</span>
+      <h3 class="srv-title">Documentaries</h3>
+      <p class="srv-desc">Fiction and non-fiction documentary films that tell the world's untold stories. Powerful research, intimate access, stunning cinematography.</p>
+    </div>
+    <div class="srv-card reveal" style="transition-delay:.35s">
+      <div class="srv-num">07</div>
+      <span class="srv-icon">🎪</span>
+      <h3 class="srv-title">Event Shoot & Television Shows</h3>
+      <p class="srv-desc">Multi-camera live event coverage, television show production, promos, and reality format execution — broadcast-ready from day one.</p>
+    </div>
+    <div class="srv-card reveal" style="transition-delay:.4s">
+      <div class="srv-num">08</div>
+      <span class="srv-icon">🗺️</span>
+      <h3 class="srv-title">Line Production</h3>
+      <p class="srv-desc">Seamless on-ground logistics, location scouting, permits, crew coordination and equipment management across Delhi, NCR and pan-India shoots.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="port-header reveal">
+    <span class="sec-label">Our Work</span>
+    <h2 class="sec-title">Selected Productions</h2>
+    <div class="divider"></div>
+    <div class="port-filter">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Feature Films</button>
+      <button class="filter-btn">Commercials</button>
+      <button class="filter-btn">Corporate</button>
+      <button class="filter-btn">Music Videos</button>
+      <button class="filter-btn">Documentaries</button>
+    </div>
+  </div>
+  <div class="port-grid">
+    <div class="port-item big reveal">
+      <div class="port-thumb">
+        <div class="port-thumb-bg" style="background: linear-gradient(135deg, #1a0e00 0%, #3d2800 40%, #1a0e00 100%);width:100%;height:100%;"></div>
+        <span class="port-placeholder">🎬</span>
+        <div class="port-overlay">
+          <span class="port-cat">Feature Film</span>
+          <div class="port-name">Raat Ki Khamoshi</div>
+          <div class="port-year">2023 · Drama</div>
+        </div>
+      </div>
+    </div>
+    <div class="port-item reveal" style="transition-delay:.1s">
+      <div class="port-thumb">
+        <div class="port-thumb-bg" style="background: linear-gradient(135deg, #00121a 0%, #003d50 100%);width:100%;height:100%;"></div>
+        <span class="port-placeholder">📺</span>
+        <div class="port-overlay">
+          <span class="port-cat">TVC</span>
+          <div class="port-name">Brand Campaign '24</div>
+          <div class="port-year">2024 · Commercial</div>
+        </div>
+      </div>
+    </div>
+    <div class="port-item reveal" style="transition-delay:.15s">
+      <div class="port-thumb">
+        <div class="port-thumb-bg" style="background: linear-gradient(135deg, #0a0015 0%, #2d0045 100%);width:100%;height:100%;"></div>
+        <span class="port-placeholder">🎵</span>
+        <div class="port-overlay">
+          <span class="port-cat">Music Video</span>
+          <div class="port-name">Teri Aankhein</div>
+          <div class="port-year">2023 · Pop</div>
+        </div>
+      </div>
+    </div>
+    <div class="port-item reveal" style="transition-delay:.2s">
+      <div class="port-thumb">
+        <div class="port-thumb-bg" style="background: linear-gradient(135deg, #0f1500 0%, #2a3d00 100%);width:100%;height:100%;"></div>
+        <span class="port-placeholder">🏢</span>
+        <div class="port-overlay">
+          <span class="port-cat">Corporate</span>
+          <div class="port-name">Annual Report Film</div>
+          <div class="port-year">2024 · Corporate</div>
+        </div>
+      </div>
+    </div>
+    <div class="port-item reveal" style="transition-delay:.25s">
+      <div class="port-thumb">
+        <div class="port-thumb-bg" style="background: linear-gradient(135deg, #150000 0%, #450000 100%);width:100%;height:100%;"></div>
+        <span class="port-placeholder">🎞️</span>
+        <div class="port-overlay">
+          <span class="port-cat">Documentary</span>
+          <div class="port-name">Voices of Okhla</div>
+          <div class="port-year">2022 · Doc</div>
+        </div>
+      </div>
+    </div>
+    <div class="port-item reveal" style="transition-delay:.3s">
+      <div class="port-thumb">
+        <div class="port-thumb-bg" style="background: linear-gradient(135deg, #150d00 0%, #3d2800 100%);width:100%;height:100%;"></div>
+        <span class="port-placeholder">📱</span>
+        <div class="port-overlay">
+          <span class="port-cat">Web Series</span>
+          <div class="port-name">Delhi Nights</div>
+          <div class="port-year">2023 · Thriller</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="clients-wrap">
+    <div class="reveal" style="text-align:center; margin-bottom:16px;">
+      <span class="sec-label">Trusted By</span>
+      <h2 class="sec-title">Our Clients</h2>
+      <div class="divider" style="margin:24px auto;"></div>
+      <p style="font-family:var(--font-s); font-style:italic; font-size:18px; color:var(--ash); max-width:480px; margin:0 auto;">We've had the privilege of working with reputed brands, broadcasters, and creators across diverse industries.</p>
+    </div>
+    <div class="clients-grid">
+      <div class="client-box reveal" style="transition-delay:.05s"><div class="client-icon">📡</div><div class="client-name">Doordarshan</div></div>
+      <div class="client-box reveal" style="transition-delay:.1s"><div class="client-icon">🎯</div><div class="client-name">Sony LIV</div></div>
+      <div class="client-box reveal" style="transition-delay:.15s"><div class="client-icon">🏛️</div><div class="client-name">Government of India</div></div>
+      <div class="client-box reveal" style="transition-delay:.2s"><div class="client-icon">🌐</div><div class="client-name">Star Network</div></div>
+      <div class="client-box reveal" style="transition-delay:.25s"><div class="client-icon">📻</div><div class="client-name">Zee Media</div></div>
+      <div class="client-box reveal" style="transition-delay:.3s"><div class="client-icon">💼</div><div class="client-name">Corporate Houses</div></div>
+      <div class="client-box reveal" style="transition-delay:.35s"><div class="client-icon">🎓</div><div class="client-name">Educational Brands</div></div>
+      <div class="client-box reveal" style="transition-delay:.4s"><div class="client-icon">🛍️</div><div class="client-name">FMCG Brands</div></div>
+      <div class="client-box reveal" style="transition-delay:.45s"><div class="client-icon">🎤</div><div class="client-name">Music Labels</div></div>
+      <div class="client-box reveal" style="transition-delay:.5s"><div class="client-icon">🏥</div><div class="client-name">Healthcare Orgs</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="process-wrap">
+    <div style="text-align:center;" class="reveal">
+      <span class="sec-label">How We Work</span>
+      <h2 class="sec-title">Our Production Process</h2>
+      <div class="divider" style="margin:24px auto;"></div>
+      <p style="font-family:var(--font-s); font-style:italic; font-size:18px; color:var(--ash); max-width:500px; margin:0 auto;">A seamless journey from your first idea to the final frame.</p>
+    </div>
+    <div class="process-steps">
+      <div class="step reveal" style="transition-delay:.05s">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Discovery & Brief</h3>
+        <p class="step-desc">We deep dive into your vision, goals, target audience, and budget to craft a crystal-clear production brief.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.1s">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Creative Development</h3>
+        <p class="step-desc">Scripting, storyboarding, concept art and creative direction — every detail planned before a camera rolls.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.15s">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Pre-Production</h3>
+        <p class="step-desc">Casting, location scouting, scheduling, equipment booking and crew assembly for a flawless shoot day.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.2s">
+        <div class="step-num">04</div>
+        <h3 class="step-title">Production</h3>
+        <p class="step-desc">Lights, camera, action. We bring the full force of our creative and technical team to the set every single day.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.25s">
+        <div class="step-num">05</div>
+        <h3 class="step-title">Post & Delivery</h3>
+        <p class="step-desc">Editing, color grading, sound design, VFX and final delivery in any format — broadcast, digital or theatrical.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="test-wrap">
+    <div class="reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; margin-bottom:0;">
+      <div>
+        <span class="sec-label">What Clients Say</span>
+        <h2 class="sec-title">Reviews</h2>
+      </div>
+      <div class="rating-badge reveal">
+        <div class="rating-score">4.9</div>
+        <div class="rating-info">
+          <div class="rating-stars">★★★★★</div>
+          <div class="rating-count">Google Reviews · New Delhi</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal" style="transition-delay:.05s">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">Working with SHAB PRODUCTION was a seamless experience from start to finish. The team's passion and professionalism is truly unmatched. Our corporate film exceeded every expectation.</p>
+        <div class="test-author">
+          <div class="test-avatar">R</div>
+          <div><div class="test-name">Rahul Sharma</div><div class="test-role">Marketing Head · Tech Corp</div></div>
+        </div>
+      </div>
+      <div class="test-card reveal" style="transition-delay:.1s">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">They brought our brand story to life in ways we couldn't imagine. The cinematography was breathtaking and the whole process was so well managed. Highly recommend for any brand film.</p>
+        <div class="test-author">
+          <div class="test-avatar">P</div>
+          <div><div class="test-name">Priya Malhotra</div><div class="test-role">Founder · Fashion Brand</div></div>
+        </div>
+      </div>
+      <div class="test-card reveal" style="transition-delay:.15s">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">SHAB handled our entire web series pre-production and shoot. Their experience and network in Delhi made everything so smooth. The final output was pure cinema. Outstanding work!</p>
+        <div class="test-author">
+          <div class="test-avatar">A</div>
+          <div><div class="test-name">Arjun Kapoor</div><div class="test-role">Director · Digital Studio</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="reveal-left">
+      <span class="sec-label">Get In Touch</span>
+      <h2 class="sec-title">Let's Create<br>Together</h2>
+      <div class="divider"></div>
+      <p class="sec-body" style="margin-bottom:48px;">We're open 24 hours, 7 days a week. Whether you're an agency, brand, director or first-time filmmaker — we'd love to hear your idea.</p>
+      <div class="contact-detail">
+        <div class="c-icon">📍</div>
+        <div>
+          <div class="c-label">Studio Address</div>
+          <div class="c-value">J-76/C Abul Fazla Enclave,<br>Jamia Nagar, Okhla,<br>New Delhi – 110025</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="c-icon">📞</div>
+        <div>
+          <div class="c-label">Phone / WhatsApp</div>
+          <div class="c-value"><a href="tel:+919911389970">+91 99113 89970</a></div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="c-icon">⏰</div>
+        <div>
+          <div class="c-label">Working Hours</div>
+          <div class="c-value">Open 24 Hours · 7 Days a Week</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="c-icon">📍</div>
+        <div>
+          <div class="c-label">Service Area</div>
+          <div class="c-value">Delhi NCR · Pan India · International</div>
+        </div>
+      </div>
+      <div class="socials">
+        <a href="https://facebook.com" class="social-link" target="_blank" title="Facebook">f</a>
+        <a href="https://instagram.com" class="social-link" target="_blank" title="Instagram" style="font-family:serif;">✦</a>
+        <a href="https://wa.me/919911389970" class="social-link" target="_blank" title="WhatsApp">W</a>
+        <a href="https://youtube.com" class="social-link" target="_blank" title="YouTube">▶</a>
+      </div>
+    </div>
+    <div class="contact-form reveal-right">
+      <div class="form-row">
+        <div class="form-field"><input type="text" placeholder="Your Name *"></div>
+        <div class="form-field"><input type="email" placeholder="Email Address *"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field"><input type="tel" placeholder="Phone Number"></div>
+        <div class="form-field">
+          <select>
+            <option value="" disabled selected>Type of Production</option>
+            <option>Feature Film</option>
+            <option>TV Commercial</option>
+            <option>Corporate Video</option>
+            <option>Music Video</option>
+            <option>Web Series</option>
+            <option>Documentary</option>
+            <option>Event Shoot</option>
+            <option>Line Production</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field"><input type="text" placeholder="Budget Range (optional)"></div>
+        <div class="form-field"><input type="text" placeholder="Shoot Location"></div>
+      </div>
+      <div class="form-field" style="margin-bottom:2px;"><textarea placeholder="Tell us about your project — the more detail, the better! *"></textarea></div>
+      <button class="form-submit">Send Project Brief →</button>
+      <p style="font-size:11px; color:var(--ash); margin-top:16px; letter-spacing:.05em;">We respond within 2 hours. Available 24/7 for urgent productions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <span class="footer-logo">SHAB</span>
+        <p class="footer-tagline">"We are enthusiastic — and it'll amaze you."</p>
+        <p class="footer-about">A full-service creative digital video production company in New Delhi, India. 12+ years of experience creating stories that move people.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Feature Films</a></li>
+          <li><a href="#services">TV Commercials</a></li>
+          <li><a href="#services">Corporate Films</a></li>
+          <li><a href="#services">Music Videos</a></li>
+          <li><a href="#services">Web Series</a></li>
+          <li><a href="#services">Line Production</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#process">Our Process</a></li>
+          <li><a href="#clients">Clients</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+919911389970">+91 99113 89970</a></li>
+          <li><a href="#">Okhla, New Delhi</a></li>
+          <li><a href="#">110025</a></li>
+          <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://wa.me/919911389970" target="_blank">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 <span>SHAB PRODUCTION</span>. All rights reserved. New Delhi, India.</p>
+      <p class="footer-meta">J-76/C Abul Fazla Enclave · Jamia Nagar · Okhla · 110025</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Cursor
+const cur = document.getElementById('cur');
+const cur2 = document.getElementById('cur2');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top = e.clientY + 'px';
+  setTimeout(() => {
+    cur2.style.left = e.clientX + 'px';
+    cur2.style.top = e.clientY + 'px';
+  }, 80);
+});
+document.querySelectorAll('a,button,.filter-btn,.port-item').forEach(el => {
+  el.addEventListener('mouseenter', () => { cur2.style.width = '60px'; cur2.style.height = '60px'; cur2.style.opacity = '.8'; });
+  el.addEventListener('mouseleave', () => { cur2.style.width = '38px'; cur2.style.height = '38px'; cur2.style.opacity = '.6'; });
+});
+
+// Scrolled nav
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Film holes
+function makeHoles(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const w = window.innerWidth;
+  const count = Math.ceil(w / 50) + 2;
+  for (let i = 0; i < count; i++) {
+    const h = document.createElement('div');
+    h.className = 'hole';
+    el.appendChild(h);
+  }
+}
+makeHoles('holes-top');
+makeHoles('holes-bottom');
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+// Portfolio filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// Smooth anchor scroll for nav
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>

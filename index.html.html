@@ -3,765 +3,418 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sanskriti Singh — Creative Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+<title>Sanskriti Singh — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <style>
 :root {
-  --blush:#fce8ed; --rose:#f7c5d0; --petal:#f0a0b8;
-  --deep:#c2607a; --bark:#6b3a4a; --cream:#fff8f9;
-  --text:#4a2535; --muted:#9b6070; --white:#ffffff;
-  --shadow:0 8px 40px rgba(194,96,122,0.12);
-  --shadow2:0 2px 16px rgba(194,96,122,0.18);
+  --blush: #fce8ee;
+  --petal: #f9d0dc;
+  --rose: #e8a0b0;
+  --deep-rose: #c4607a;
+  --dark-plum: #3d1a26;
+  --text: #4a2535;
+  --text-soft: #8a5060;
+  --white: #fff;
+  --card-bg: rgba(255,255,255,0.72);
+  --shadow: 0 8px 40px rgba(196,96,122,0.13);
+  --shadow-deep: 0 20px 60px rgba(196,96,122,0.22);
+  --font-display: 'Cormorant Garamond', serif;
+  --font-title: 'Cinzel', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --radius: 20px;
+  --radius-lg: 32px;
 }
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Nunito',sans-serif;background:var(--blush);color:var(--text);overflow-x:hidden;cursor:none;}
-
-.cursor{width:12px;height:12px;background:var(--deep);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s,background 0.2s;}
-.cursor-ring{width:36px;height:36px;border:1.5px solid var(--petal);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.18s ease,width 0.2s,height 0.2s;}
-
-#blossom-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
-
-nav{position:fixed;top:0;width:100%;z-index:100;padding:16px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(252,232,237,0.82);backdrop-filter:blur(16px);border-bottom:1px solid rgba(240,160,184,0.2);}
-.nav-logo{font-family:'Dancing Script',cursive;font-size:1.7rem;color:var(--deep);text-decoration:none;}
-.nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{font-size:0.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--bark);text-decoration:none;position:relative;transition:color 0.3s;}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--petal);border-radius:2px;transition:width 0.3s;}
-.nav-links a:hover{color:var(--deep);}
-.nav-links a:hover::after{width:100%;}
-
-/* HERO */
-#hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:120px 24px 80px;}
-.hero-badge{display:inline-block;background:rgba(240,160,184,0.25);border:1px solid var(--petal);color:var(--deep);font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 20px;border-radius:30px;margin-bottom:28px;animation:fadeUp 0.8s ease both;}
-.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,10vw,8.5rem);font-weight:300;line-height:1;color:var(--bark);animation:fadeUp 0.9s 0.1s ease both;letter-spacing:-2px;}
-.hero-name em{font-style:italic;color:var(--deep);}
-.hero-sub{font-family:'Dancing Script',cursive;font-size:clamp(1.3rem,3vw,2rem);color:var(--muted);margin-top:14px;animation:fadeUp 1s 0.2s ease both;}
-.hero-desc{max-width:540px;font-size:0.95rem;line-height:1.85;color:var(--muted);margin:22px auto 0;animation:fadeUp 1s 0.3s ease both;}
-.hero-btns{display:flex;gap:16px;justify-content:center;margin-top:38px;animation:fadeUp 1s 0.4s ease both;flex-wrap:wrap;}
-.btn-primary{background:var(--deep);color:#fff;padding:14px 36px;border-radius:50px;font-size:0.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;box-shadow:0 6px 24px rgba(194,96,122,0.35);transition:all 0.3s;border:none;font-family:'Nunito',sans-serif;cursor:none;}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(194,96,122,0.45);}
-.btn-outline{border:1.5px solid var(--petal);color:var(--deep);padding:13px 36px;border-radius:50px;font-size:0.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:all 0.3s;}
-.btn-outline:hover{background:var(--petal);color:var(--bark);transform:translateY(-3px);}
-.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;animation:fadeUp 1.2s 0.7s ease both;}
-.scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,var(--petal),transparent);animation:pulse 1.8s ease infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
-
-/* SECTIONS */
-section{position:relative;z-index:1;padding:86px 24px;}
-.section-inner{max-width:1100px;margin:0 auto;}
-.section-label{font-size:0.68rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--petal);margin-bottom:8px;}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:300;color:var(--bark);line-height:1.1;margin-bottom:14px;}
-.section-title em{font-style:italic;color:var(--deep);}
-
-/* ABOUT */
-#about{background:var(--cream);}
-.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center;margin-top:48px;}
-.about-img-frame{width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,var(--rose),var(--petal));border-radius:40% 60% 55% 45%/45% 50% 50% 55%;display:flex;align-items:center;justify-content:center;font-size:5rem;box-shadow:var(--shadow);animation:morphBlob 8s ease-in-out infinite;position:relative;}
-.about-img-frame i{color:rgba(255,255,255,0.55);}
-@keyframes morphBlob{0%,100%{border-radius:40% 60% 55% 45%/45% 50% 50% 55%;}33%{border-radius:55% 45% 40% 60%/50% 45% 55% 50%;}66%{border-radius:45% 55% 60% 40%/55% 50% 45% 50%;}}
-.about-img-wrap{position:relative;}
-.float-tag{position:absolute;background:white;border-radius:18px;padding:9px 16px;box-shadow:var(--shadow2);font-size:0.75rem;font-weight:700;color:var(--deep);display:flex;align-items:center;gap:7px;}
-.float-tag i{color:var(--petal);}
-.tag1{bottom:-16px;right:-16px;}
-.tag2{top:18px;left:-18px;}
-.about-text p{font-size:0.95rem;line-height:1.9;color:var(--muted);margin-bottom:18px;}
-.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
-.stat-card{background:var(--blush);border-radius:18px;padding:18px;text-align:center;border:1px solid rgba(240,160,184,0.3);transition:transform 0.3s;}
-.stat-card:hover{transform:translateY(-4px);}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;color:var(--deep);line-height:1;}
-.stat-lbl{font-size:0.68rem;color:var(--muted);margin-top:4px;font-weight:600;letter-spacing:1px;}
-
-/* SKILLS */
-#skills{background:var(--blush);}
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:22px;margin-top:46px;}
-.skill-card{background:white;border-radius:22px;padding:30px 26px;box-shadow:var(--shadow);transition:all 0.35s;border:1px solid rgba(240,160,184,0.2);position:relative;overflow:hidden;}
-.skill-card::before{content:'';position:absolute;top:-40px;right:-40px;width:100px;height:100px;background:linear-gradient(135deg,var(--rose),transparent);border-radius:50%;transition:transform 0.4s;}
-.skill-card:hover{transform:translateY(-8px);box-shadow:0 16px 60px rgba(194,96,122,0.18);}
-.skill-card:hover::before{transform:scale(1.6);}
-.skill-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--rose),var(--petal));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--deep);margin-bottom:18px;}
-.skill-card h3{font-size:1rem;font-weight:700;color:var(--bark);margin-bottom:9px;}
-.skill-card p{font-size:0.82rem;color:var(--muted);line-height:1.7;}
-.skill-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:13px;}
-.skill-tag{background:var(--blush);color:var(--deep);font-size:0.65rem;font-weight:700;padding:3px 10px;border-radius:20px;}
-
-/* PORTFOLIO */
-#portfolio{background:var(--cream);}
-.port-filters{display:flex;gap:10px;flex-wrap:wrap;margin:32px 0;}
-.filter-btn{padding:8px 20px;border-radius:30px;border:1.5px solid var(--petal);background:transparent;color:var(--bark);font-size:0.75rem;font-weight:700;letter-spacing:1px;cursor:none;transition:all 0.3s;font-family:'Nunito',sans-serif;}
-.filter-btn.active,.filter-btn:hover{background:var(--deep);border-color:var(--deep);color:white;}
-.port-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:26px;}
-.port-card{background:white;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);transition:all 0.35s;border:1px solid rgba(240,160,184,0.15);}
-.port-card:hover{transform:translateY(-10px);box-shadow:0 20px 60px rgba(194,96,122,0.2);}
-.port-card.hidden{display:none;}
-.port-thumb{width:100%;height:190px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden;}
-.port-overlay{position:absolute;inset:0;background:rgba(107,58,74,0.75);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;}
-.port-card:hover .port-overlay{opacity:1;}
-.port-overlay span{color:white;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1.5px solid rgba(255,255,255,0.5);padding:9px 22px;border-radius:30px;}
-.port-info{padding:22px;}
-.port-cat{font-size:0.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--petal);margin-bottom:7px;}
-.port-info h3{font-size:0.97rem;font-weight:700;color:var(--bark);margin-bottom:7px;}
-.port-info p{font-size:0.8rem;color:var(--muted);line-height:1.65;}
-.port-tools{display:flex;flex-wrap:wrap;gap:5px;margin-top:13px;}
-.port-tool{background:var(--blush);color:var(--deep);font-size:0.62rem;font-weight:700;padding:3px 9px;border-radius:20px;}
-
-/* EXCEL SHOWCASE */
-.excel-showcase{background:white;border-radius:24px;padding:32px;box-shadow:var(--shadow);margin-top:28px;border:1px solid rgba(240,160,184,0.2);}
-.excel-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
-.excel-tab{padding:7px 18px;border-radius:20px;border:1.5px solid var(--petal);background:transparent;color:var(--bark);font-size:0.75rem;font-weight:700;cursor:none;transition:all 0.3s;font-family:'Nunito',sans-serif;}
-.excel-tab.active{background:var(--deep);border-color:var(--deep);color:white;}
-.sheet-view{display:none;}
-.sheet-view.active{display:block;}
-.sheet-title{font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--petal);margin-bottom:14px;}
-.data-table{width:100%;border-collapse:collapse;font-size:0.8rem;}
-.data-table th{background:linear-gradient(135deg,var(--rose),var(--petal));color:var(--bark);padding:10px 14px;text-align:left;font-weight:700;font-size:0.72rem;letter-spacing:0.5px;}
-.data-table th:first-child{border-radius:10px 0 0 0;}
-.data-table th:last-child{border-radius:0 10px 0 0;}
-.data-table td{padding:9px 14px;border-bottom:1px solid rgba(240,160,184,0.2);color:var(--text);}
-.data-table tr:last-child td{border-bottom:none;}
-.data-table tr:hover td{background:rgba(252,232,237,0.5);}
-.badge-yes{background:#d4edda;color:#155724;padding:2px 10px;border-radius:12px;font-size:0.68rem;font-weight:700;}
-.badge-no{background:#f8d7da;color:#721c24;padding:2px 10px;border-radius:12px;font-size:0.68rem;font-weight:700;}
-.badge-done{background:#d4edda;color:#155724;padding:2px 10px;border-radius:12px;font-size:0.68rem;font-weight:700;}
-.badge-pending{background:#fff3cd;color:#856404;padding:2px 10px;border-radius:12px;font-size:0.68rem;font-weight:700;}
-
-/* EXPERIENCE */
-#experience{background:var(--blush);}
-.exp-timeline{margin-top:46px;position:relative;}
-.exp-timeline::before{content:'';position:absolute;left:22px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--petal),transparent);}
-.exp-item{display:flex;gap:30px;margin-bottom:36px;padding-left:8px;}
-.exp-dot{width:28px;height:28px;flex-shrink:0;background:white;border:3px solid var(--petal);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:4px;box-shadow:0 0 0 4px rgba(240,160,184,0.2);}
-.exp-dot i{font-size:0.6rem;color:var(--deep);}
-.exp-card{flex:1;background:white;border-radius:20px;padding:26px 30px;box-shadow:var(--shadow);border:1px solid rgba(240,160,184,0.2);transition:transform 0.3s;}
-.exp-card:hover{transform:translateX(6px);}
-.exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;}
-.exp-title{font-size:1rem;font-weight:700;color:var(--bark);}
-.exp-company{color:var(--deep);font-weight:600;font-size:0.88rem;margin-top:3px;}
-.exp-date{background:var(--blush);color:var(--muted);font-size:0.7rem;font-weight:700;padding:4px 13px;border-radius:20px;white-space:nowrap;}
-.exp-list{margin-top:14px;list-style:none;}
-.exp-list li{font-size:0.83rem;color:var(--muted);line-height:1.7;padding-left:17px;position:relative;margin-bottom:5px;}
-.exp-list li::before{content:'✿';position:absolute;left:0;color:var(--petal);font-size:0.65rem;}
-.exp-achievement{margin-top:13px;background:linear-gradient(135deg,rgba(252,232,237,0.8),rgba(247,197,208,0.4));border-left:3px solid var(--petal);border-radius:0 12px 12px 0;padding:9px 15px;font-size:0.8rem;color:var(--deep);font-weight:600;}
-
-/* EDUCATION */
-#education{background:var(--cream);}
-.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px;margin-top:46px;}
-.edu-card{background:white;border-radius:22px;padding:30px;box-shadow:var(--shadow);border:1px solid rgba(240,160,184,0.2);transition:transform 0.3s;position:relative;overflow:hidden;}
-.edu-card::after{content:'🌸';position:absolute;bottom:-8px;right:8px;font-size:3.5rem;opacity:0.08;}
-.edu-card:hover{transform:translateY(-6px);}
-.edu-year{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:600;color:var(--rose);line-height:1;margin-bottom:10px;}
-.edu-card h3{font-size:0.97rem;font-weight:700;color:var(--bark);margin-bottom:5px;}
-.edu-card p{font-size:0.8rem;color:var(--muted);line-height:1.6;}
-.edu-badge{display:inline-block;background:var(--blush);color:var(--deep);font-size:0.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 11px;border-radius:20px;margin-top:11px;}
-
-/* CERTS */
-#certifications{background:var(--blush);}
-.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:18px;margin-top:46px;}
-.cert-card{background:white;border-radius:20px;padding:26px 22px;box-shadow:var(--shadow);border:1px solid rgba(240,160,184,0.2);transition:all 0.3s;text-align:center;}
-.cert-card:hover{transform:translateY(-6px);box-shadow:0 14px 50px rgba(194,96,122,0.18);}
-.cert-icon{width:52px;height:52px;background:linear-gradient(135deg,var(--rose),var(--petal));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:white;margin:0 auto 14px;}
-.cert-card h3{font-size:0.88rem;font-weight:700;color:var(--bark);margin-bottom:7px;}
-.cert-card p{font-size:0.76rem;color:var(--muted);line-height:1.6;}
-.cert-date{font-size:0.65rem;color:var(--petal);font-weight:700;margin-top:9px;letter-spacing:1px;}
-
-/* CONTACT */
-#contact{background:var(--cream);}
-.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:46px;align-items:start;}
-.contact-info h3{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:var(--bark);margin-bottom:14px;}
-.contact-info p{font-size:0.88rem;color:var(--muted);line-height:1.85;margin-bottom:28px;}
-.contact-items{display:flex;flex-direction:column;gap:14px;}
-.contact-item{display:flex;align-items:center;gap:14px;}
-.c-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--rose),var(--petal));border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-size:0.95rem;flex-shrink:0;}
-.contact-item span{font-size:0.85rem;color:var(--bark);font-weight:600;}
-.contact-form{display:flex;flex-direction:column;gap:14px;}
-.form-group{display:flex;flex-direction:column;gap:5px;}
-.form-group label{font-size:0.7rem;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;}
-.form-group input,.form-group textarea{background:white;border:1.5px solid rgba(240,160,184,0.35);border-radius:13px;padding:12px 16px;font-size:0.88rem;color:var(--text);font-family:'Nunito',sans-serif;transition:border-color 0.3s;resize:none;cursor:none;}
-.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--petal);box-shadow:0 0 0 3px rgba(240,160,184,0.15);}
-.form-group textarea{height:115px;}
-
-/* FOOTER */
-footer{position:relative;z-index:1;background:var(--bark);color:rgba(255,255,255,0.55);text-align:center;padding:28px 24px;font-size:0.8rem;}
-footer span{color:var(--petal);}
-.heart{color:var(--petal);display:inline-block;animation:hb 1.4s ease infinite;}
-@keyframes hb{0%,100%{transform:scale(1);}50%{transform:scale(1.35);}}
-
-/* REVEAL */
-@keyframes fadeUp{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-
-@media(max-width:768px){
-  nav{padding:14px 18px;}
-  .nav-links{display:none;}
-  .about-grid,.contact-wrap{grid-template-columns:1fr;}
-  .about-img-wrap{max-width:260px;margin:0 auto;}
-}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--blush);color:var(--text);overflow-x:hidden;min-height:100vh}
+#blossom-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 60px;background:rgba(252,232,238,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(232,160,176,0.25);transition:all 0.4s}
+.nav-logo{font-family:var(--font-title);font-size:1.1rem;color:var(--deep-rose);letter-spacing:3px;text-transform:uppercase}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-soft);text-decoration:none;transition:color 0.3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--deep-rose);transition:width 0.3s}
+.nav-links a:hover{color:var(--deep-rose)}
+.nav-links a:hover::after{width:100%}
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 40px 80px;z-index:1}
+.hero-inner{max-width:860px}
+.hero-badge{display:inline-block;font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--deep-rose);background:rgba(196,96,122,0.1);border:1px solid rgba(196,96,122,0.25);border-radius:50px;padding:7px 20px;margin-bottom:30px;animation:fadeUp 0.8s ease both}
+.hero-name{font-family:var(--font-display);font-size:clamp(4rem,10vw,8rem);font-weight:300;line-height:0.95;color:var(--dark-plum);letter-spacing:-1px;margin-bottom:18px;animation:fadeUp 0.9s 0.1s ease both}
+.hero-name em{font-style:italic;color:var(--deep-rose)}
+.hero-tagline{font-family:var(--font-display);font-size:clamp(1.1rem,2.5vw,1.6rem);font-weight:300;color:var(--text-soft);font-style:italic;margin-bottom:40px;animation:fadeUp 1s 0.2s ease both}
+.hero-desc{font-size:0.93rem;color:var(--text-soft);max-width:520px;margin:0 auto 44px;line-height:1.85;animation:fadeUp 1.1s 0.3s ease both}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeUp 1.2s 0.4s ease both}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--deep-rose);color:#fff;padding:14px 32px;border-radius:50px;font-size:0.83rem;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:all 0.3s;box-shadow:0 8px 24px rgba(196,96,122,0.35)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(196,96,122,0.45)}
+.btn-outline{display:inline-flex;align-items:center;gap:9px;background:transparent;color:var(--deep-rose);padding:13px 30px;border:1.5px solid var(--deep-rose);border-radius:50px;font-size:0.83rem;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:all 0.3s}
+.btn-outline:hover{background:var(--deep-rose);color:#fff;transform:translateY(-3px)}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--rose);font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;animation:pulse 2s infinite}
+.scroll-line{width:1px;height:46px;background:linear-gradient(to bottom,var(--rose),transparent)}
+section{position:relative;z-index:1;padding:90px 60px;max-width:1180px;margin:0 auto}
+.section-label{font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--rose);margin-bottom:10px}
+.section-title{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.6rem);font-weight:300;color:var(--dark-plum);line-height:1.1;margin-bottom:14px}
+.section-title em{color:var(--deep-rose);font-style:italic}
+.section-sub{font-size:0.88rem;color:var(--text-soft);line-height:1.85;max-width:480px;margin-bottom:50px}
+#about .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-card-main{background:var(--card-bg);backdrop-filter:blur(20px);border:1px solid rgba(232,160,176,0.3);border-radius:var(--radius-lg);padding:44px 38px;box-shadow:var(--shadow-deep);position:relative;overflow:hidden}
+.about-card-main::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(232,160,176,0.22),transparent 70%);border-radius:50%}
+.about-initials{font-family:var(--font-display);font-size:5rem;font-weight:300;color:var(--deep-rose);opacity:0.12;position:absolute;top:16px;right:24px;letter-spacing:-4px;line-height:1}
+.about-name-big{font-family:var(--font-display);font-size:2.2rem;font-weight:600;color:var(--dark-plum);margin-bottom:4px}
+.about-role{font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--deep-rose);margin-bottom:22px}
+.about-bio{font-size:0.9rem;line-height:1.9;color:var(--text-soft);margin-bottom:24px}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.stat{text-align:center;background:rgba(196,96,122,0.07);border-radius:14px;padding:16px 8px}
+.stat-num{font-family:var(--font-display);font-size:2rem;font-weight:600;color:var(--deep-rose);line-height:1}
+.stat-label{font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-soft);margin-top:4px}
+.about-info-list{list-style:none}
+.about-info-list li{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid rgba(232,160,176,0.2);font-size:0.88rem;color:var(--text)}
+.about-info-list li:last-child{border-bottom:none}
+.info-icon{width:34px;height:34px;background:rgba(196,96,122,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--deep-rose);flex-shrink:0;font-size:0.82rem}
+.info-label{font-size:0.68rem;letter-spacing:1px;text-transform:uppercase;color:var(--rose);margin-bottom:2px}
+.info-val{font-weight:500;color:var(--text)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.skill-card{background:var(--card-bg);backdrop-filter:blur(20px);border:1px solid rgba(232,160,176,0.25);border-radius:var(--radius);padding:26px 20px;text-align:center;transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);cursor:default}
+.skill-card:hover{transform:translateY(-8px) scale(1.03);box-shadow:var(--shadow-deep);border-color:var(--rose)}
+.skill-icon{font-size:1.7rem;margin-bottom:12px;display:block}
+.skill-name{font-size:0.83rem;font-weight:500;color:var(--dark-plum);letter-spacing:0.5px}
+.skill-tag{font-size:0.66rem;color:var(--deep-rose);background:rgba(196,96,122,0.09);padding:3px 10px;border-radius:20px;display:inline-block;margin-top:7px;letter-spacing:1px;text-transform:uppercase}
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:26px}
+.portfolio-card{background:var(--card-bg);backdrop-filter:blur(20px);border:1px solid rgba(232,160,176,0.25);border-radius:var(--radius-lg);overflow:hidden;transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1);box-shadow:var(--shadow)}
+.portfolio-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-deep)}
+.portfolio-thumb-placeholder{width:100%;height:190px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;font-size:2.4rem}
+.portfolio-body{padding:26px}
+.portfolio-type{font-size:0.66rem;letter-spacing:2px;text-transform:uppercase;color:var(--deep-rose);margin-bottom:7px}
+.portfolio-title{font-family:var(--font-display);font-size:1.28rem;font-weight:600;color:var(--dark-plum);margin-bottom:9px;line-height:1.3}
+.portfolio-desc{font-size:0.83rem;color:var(--text-soft);line-height:1.75;margin-bottom:18px}
+.portfolio-tags{display:flex;flex-wrap:wrap;gap:6px}
+.ptag{font-size:0.68rem;padding:4px 11px;border-radius:20px;background:rgba(196,96,122,0.09);color:var(--deep-rose);border:1px solid rgba(196,96,122,0.2);letter-spacing:0.5px}
+.exp-card{background:var(--card-bg);backdrop-filter:blur(20px);border:1px solid rgba(232,160,176,0.25);border-radius:var(--radius-lg);padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;margin-bottom:22px}
+.exp-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,var(--rose),var(--deep-rose));border-radius:4px 0 0 4px}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+.exp-title{font-family:var(--font-display);font-size:1.45rem;font-weight:600;color:var(--dark-plum)}
+.exp-company{color:var(--deep-rose);font-style:italic;font-size:0.95rem}
+.exp-period{font-size:0.73rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-soft);background:rgba(196,96,122,0.09);padding:6px 16px;border-radius:20px;white-space:nowrap}
+.exp-bullets{list-style:none}
+.exp-bullets li{display:flex;gap:12px;font-size:0.86rem;color:var(--text-soft);line-height:1.75;padding:5px 0}
+.exp-bullets li::before{content:'✿';color:var(--rose);flex-shrink:0;margin-top:1px}
+.exp-achievement{margin-top:18px;padding:15px 18px;background:rgba(196,96,122,0.07);border-radius:12px;border-left:3px solid var(--deep-rose);font-size:0.84rem;color:var(--text);line-height:1.7}
+.exp-achievement strong{color:var(--deep-rose)}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.edu-card{background:var(--card-bg);backdrop-filter:blur(20px);border:1px solid rgba(232,160,176,0.25);border-radius:var(--radius);padding:30px 26px;box-shadow:var(--shadow);transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1)}
+.edu-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-deep)}
+.edu-icon{font-size:1.7rem;margin-bottom:14px}
+.edu-degree{font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--dark-plum);margin-bottom:5px;line-height:1.3}
+.edu-school{font-size:0.8rem;color:var(--deep-rose);font-style:italic;margin-bottom:9px}
+.edu-year{font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-soft);background:rgba(196,96,122,0.08);display:inline-block;padding:4px 12px;border-radius:20px}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.cert-card{background:var(--card-bg);backdrop-filter:blur(20px);border:1px solid rgba(232,160,176,0.25);border-radius:var(--radius);padding:24px 22px;transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);display:flex;gap:14px;align-items:flex-start}
+.cert-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--rose)}
+.cert-dot{width:36px;height:36px;background:linear-gradient(135deg,var(--rose),var(--deep-rose));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0;color:#fff}
+.cert-name{font-size:0.87rem;font-weight:500;color:var(--dark-plum);margin-bottom:3px;line-height:1.4}
+.cert-org{font-size:0.76rem;color:var(--deep-rose);font-style:italic;margin-bottom:3px}
+.cert-date{font-size:0.68rem;color:var(--text-soft);letter-spacing:0.5px}
+#contact{text-align:center}
+.contact-card{background:var(--card-bg);backdrop-filter:blur(20px);border:1px solid rgba(232,160,176,0.3);border-radius:var(--radius-lg);padding:65px 55px;box-shadow:var(--shadow-deep);max-width:680px;margin:0 auto;position:relative;overflow:hidden}
+.contact-card::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(232,160,176,0.18),transparent 70%);border-radius:50%}
+.contact-flower{font-size:2.8rem;margin-bottom:18px;display:block;animation:spin-slow 10s linear infinite}
+.contact-card h3{font-family:var(--font-display);font-size:2.3rem;font-weight:300;color:var(--dark-plum);margin-bottom:11px}
+.contact-card p{font-size:0.9rem;color:var(--text-soft);line-height:1.85;margin-bottom:36px}
+.contact-links{display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
+.contact-link{display:flex;align-items:center;gap:14px;background:rgba(196,96,122,0.07);border:1px solid rgba(196,96,122,0.18);border-radius:14px;padding:15px 22px;text-decoration:none;color:var(--text);transition:all 0.3s;font-size:0.88rem}
+.contact-link:hover{background:rgba(196,96,122,0.14);transform:translateX(6px);border-color:var(--rose)}
+.contact-link i{width:34px;height:34px;background:linear-gradient(135deg,var(--rose),var(--deep-rose));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.88rem;flex-shrink:0}
+footer{position:relative;z-index:1;text-align:center;padding:36px;border-top:1px solid rgba(232,160,176,0.2);background:rgba(252,232,238,0.6);font-size:0.78rem;color:var(--text-soft)}
+footer span{color:var(--deep-rose)}
+.petal-divider{text-align:center;padding:16px 0;font-size:1.1rem;letter-spacing:12px;color:var(--rose);opacity:0.55;position:relative;z-index:1}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:0.6;transform:translateX(-50%) translateY(0)}50%{opacity:1;transform:translateX(-50%) translateY(-6px)}}
+@keyframes spin-slow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:768px){nav{padding:16px 24px}.nav-links{gap:16px}section{padding:60px 22px}#about .about-grid{grid-template-columns:1fr}.contact-card{padding:40px 24px}.portfolio-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
 <canvas id="blossom-canvas"></canvas>
-
-<!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo">Sanskriti ✿</a>
+  <div class="nav-logo">Sanskriti</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#portfolio">Work</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#certifications">Certifications</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
-  <div class="hero-badge">✿ Available for Opportunities</div>
-  <h1 class="hero-name">San<em>skriti</em><br>Singh</h1>
-  <p class="hero-sub">Digital Marketer · Website Designer · Content Creator</p>
-  <p class="hero-desc">A passionate creative from Delhi building beautiful digital experiences — from responsive websites to AI-powered visual stories and clean data work.</p>
-  <div class="hero-btns">
-    <a href="#portfolio" class="btn-primary">View My Work</a>
-    <a href="#contact" class="btn-outline">Get In Touch</a>
+  <div class="hero-inner">
+    <div class="hero-badge">✿ Available for Opportunities</div>
+    <h1 class="hero-name">San<em>skriti</em><br>Singh</h1>
+    <p class="hero-tagline">Digital Marketer · Website Designer · Content Creator</p>
+    <p class="hero-desc">Crafting beautiful digital experiences through design, marketing, and AI-powered storytelling. Based in Delhi, dreaming globally.</p>
+    <div class="hero-btns">
+      <a href="#portfolio" class="btn-primary"><i class="fas fa-eye"></i> View My Work</a>
+      <a href="#contact" class="btn-outline"><i class="fas fa-paper-plane"></i> Get In Touch</a>
+    </div>
   </div>
-  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+  <div class="hero-scroll"><div class="scroll-line"></div>scroll</div>
 </section>
 
-<!-- ABOUT -->
+<div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
+
 <section id="about">
-  <div class="section-inner">
+  <div class="about-grid">
     <div class="reveal">
-      <p class="section-label">✿ Who I Am</p>
-      <h2 class="section-title">A creative who turns<br><em>ideas into impact</em></h2>
-    </div>
-    <div class="about-grid">
-      <div class="about-img-wrap reveal">
-        <div class="about-img-frame"><i class="fas fa-seedling"></i></div>
-        <div class="float-tag tag1"><i class="fas fa-star"></i> Creative Mind</div>
-        <div class="float-tag tag2"><i class="fas fa-laptop-code"></i> Web + AI</div>
-      </div>
-      <div class="about-text reveal">
-        <p>Hi! I'm <strong>Sanskriti Singh</strong> — a BBA student at IGNOU and a self-driven digital creative based in Delhi. I discovered my love for design and marketing through hands-on projects and never looked back.</p>
-        <p>From building a full logistics company website with HTML, CSS & JavaScript, to generating cinematic AI videos, creating elegant brand intros, and managing structured data in Excel — I love the intersection of technology and creativity.</p>
-        <p>I'm currently deepening my skills in digital marketing and website designing, and I'm always looking for opportunities where I can learn, create, and contribute in a real-world environment.</p>
+      <div class="about-card-main">
+        <div class="about-initials">SS</div>
+        <div class="about-name-big">Sanskriti Singh</div>
+        <div class="about-role">Digital Creative & Marketer</div>
+        <p class="about-bio">Hi! I'm a BBA student at IGNOU with a deep passion for digital marketing, content creation, and AI-powered visual storytelling. I love building things that are both beautiful and functional — from responsive websites to AI-generated videos.</p>
         <div class="about-stats">
-          <div class="stat-card"><div class="stat-num">1+</div><div class="stat-lbl">Website Launched</div></div>
-          <div class="stat-card"><div class="stat-num">5+</div><div class="stat-lbl">Certifications</div></div>
-          <div class="stat-card"><div class="stat-num">∞</div><div class="stat-lbl">Creative Ideas</div></div>
+          <div class="stat"><div class="stat-num">1+</div><div class="stat-label">Years Exp.</div></div>
+          <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Projects</div></div>
+          <div class="stat"><div class="stat-num">5</div><div class="stat-label">Certs</div></div>
         </div>
       </div>
+    </div>
+    <div class="reveal">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Creative mind,<br><em>digital heart</em></h2>
+      <ul class="about-info-list">
+        <li><div class="info-icon"><i class="fas fa-graduation-cap"></i></div><div><div class="info-label">Education</div><div class="info-val">BBA — IGNOU University (2025–2028)</div></div></li>
+        <li><div class="info-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="info-label">Location</div><div class="info-val">Delhi, India · Open to Remote</div></div></li>
+        <li><div class="info-icon"><i class="fas fa-envelope"></i></div><div><div class="info-label">Email</div><div class="info-val">ssanskriti0008@gmail.com</div></div></li>
+        <li><div class="info-icon"><i class="fas fa-heart"></i></div><div><div class="info-label">Interests</div><div class="info-val">AI Video, Visual Storytelling, Content Innovation</div></div></li>
+        <li><div class="info-icon"><i class="fas fa-language"></i></div><div><div class="info-label">Languages</div><div class="info-val">Hindi · English</div></div></li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
+<div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
+
 <section id="skills">
-  <div class="section-inner">
-    <div class="reveal">
-      <p class="section-label">✿ What I Bring</p>
-      <h2 class="section-title">Skills &amp; <em>Expertise</em></h2>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-card reveal">
-        <div class="skill-icon"><i class="fas fa-code"></i></div>
-        <h3>Web Development</h3>
-        <p>Building responsive, clean websites from scratch with attention to UI and performance.</p>
-        <div class="skill-tags"><span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span><span class="skill-tag">JavaScript</span><span class="skill-tag">Responsive</span></div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon"><i class="fas fa-bullhorn"></i></div>
-        <h3>Digital Marketing</h3>
-        <p>Creating email sequences, social content, and marketing strategies that drive engagement.</p>
-        <div class="skill-tags"><span class="skill-tag">Email Marketing</span><span class="skill-tag">Social Media</span><span class="skill-tag">Content Strategy</span></div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
-        <h3>AI Content Creation</h3>
-        <p>Generating stunning AI images and cinematic videos for brand storytelling and marketing.</p>
-        <div class="skill-tags"><span class="skill-tag">AI Image Gen</span><span class="skill-tag">AI Video Gen</span><span class="skill-tag">Visual Storytelling</span></div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon"><i class="fas fa-palette"></i></div>
-        <h3>Design & Multimedia</h3>
-        <p>Designing presentations, graphics, and video edits for a polished professional look.</p>
-        <div class="skill-tags"><span class="skill-tag">Canva</span><span class="skill-tag">Video Editing</span><span class="skill-tag">PowerPoint</span></div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon"><i class="fas fa-table"></i></div>
-        <h3>Data Entry & Excel</h3>
-        <p>Handling spreadsheets, data entry, documentation and office workflows accurately and efficiently.</p>
-        <div class="skill-tags"><span class="skill-tag">MS Excel</span><span class="skill-tag">MS Word</span><span class="skill-tag">Data Entry</span><span class="skill-tag">Task Tracking</span></div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon"><i class="fas fa-comments"></i></div>
-        <h3>Communication</h3>
-        <p>Strong written and verbal communication in English with excellent time management.</p>
-        <div class="skill-tags"><span class="skill-tag">English (Spoken)</span><span class="skill-tag">Presentations</span><span class="skill-tag">Teamwork</span></div>
-      </div>
-    </div>
+  <div class="reveal">
+    <div class="section-label">What I Know</div>
+    <h2 class="section-title">My <em>Skills</em></h2>
+    <p class="section-sub">A blend of creative and technical skills developed through courses, certifications, and real-world projects.</p>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-card"><span class="skill-icon">🌐</span><div class="skill-name">HTML / CSS / JS</div><span class="skill-tag">Web Dev</span></div>
+    <div class="skill-card"><span class="skill-icon">📊</span><div class="skill-name">MS Excel & Word</div><span class="skill-tag">Office</span></div>
+    <div class="skill-card"><span class="skill-icon">📧</span><div class="skill-name">Email Marketing</div><span class="skill-tag">Marketing</span></div>
+    <div class="skill-card"><span class="skill-icon">🎨</span><div class="skill-name">Canva Design</div><span class="skill-tag">Design</span></div>
+    <div class="skill-card"><span class="skill-icon">🤖</span><div class="skill-name">AI Image Generation</div><span class="skill-tag">AI Tools</span></div>
+    <div class="skill-card"><span class="skill-icon">🎬</span><div class="skill-name">AI Video Generation</div><span class="skill-tag">AI Tools</span></div>
+    <div class="skill-card"><span class="skill-icon">✂️</span><div class="skill-name">Video Editing</div><span class="skill-tag">Creative</span></div>
+    <div class="skill-card"><span class="skill-icon">📱</span><div class="skill-name">Digital Marketing</div><span class="skill-tag">Marketing</span></div>
+    <div class="skill-card"><span class="skill-icon">🎤</span><div class="skill-name">Communication</div><span class="skill-tag">Soft Skill</span></div>
+    <div class="skill-card"><span class="skill-icon">📈</span><div class="skill-name">Data Entry & Docs</div><span class="skill-tag">Office</span></div>
+    <div class="skill-card"><span class="skill-icon">🖥️</span><div class="skill-name">PowerPoint</div><span class="skill-tag">Presentations</span></div>
+    <div class="skill-card"><span class="skill-icon">⏱️</span><div class="skill-name">Time Management</div><span class="skill-tag">Soft Skill</span></div>
   </div>
 </section>
 
-<!-- PORTFOLIO -->
+<div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
+
 <section id="portfolio">
-  <div class="section-inner">
-    <div class="reveal">
-      <p class="section-label">✿ My Work</p>
-      <h2 class="section-title">Creative <em>Portfolio</em></h2>
+  <div class="reveal">
+    <div class="section-label">My Work</div>
+    <h2 class="section-title">Selected <em>Projects</em></h2>
+    <p class="section-sub">A showcase of websites, AI-generated content, and creative digital work I've built and designed.</p>
+  </div>
+  <div class="portfolio-grid reveal">
+    <div class="portfolio-card">
+      <div class="portfolio-thumb-placeholder" style="background:linear-gradient(135deg,#1a3c5e,#2563a8)">🚚<span style="font-size:0.72rem;color:rgba(255,255,255,0.65);letter-spacing:1px">LOGISTICS WEBSITE</span></div>
+      <div class="portfolio-body">
+        <div class="portfolio-type">Website Development</div>
+        <div class="portfolio-title">D&D Logistics — Global Freight Forwarding</div>
+        <p class="portfolio-desc">Fully responsive multi-page logistics website built with HTML, CSS & JS. Features clean UI, mobile optimisation, and service pages for freight, cargo, and supply chain solutions.</p>
+        <div class="portfolio-tags"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JavaScript</span><span class="ptag">Responsive</span><span class="ptag">UI Design</span></div>
+      </div>
     </div>
-    <div class="port-filters reveal">
-      <button class="filter-btn active" onclick="filterPort(this,'all')">All</button>
-      <button class="filter-btn" onclick="filterPort(this,'web')">Websites</button>
-      <button class="filter-btn" onclick="filterPort(this,'video')">AI Videos</button>
-      <button class="filter-btn" onclick="filterPort(this,'brand')">Branding</button>
-      <button class="filter-btn" onclick="filterPort(this,'data')">Data Entry</button>
+    <div class="portfolio-card">
+      <div class="portfolio-thumb-placeholder" style="background:linear-gradient(135deg,#2d1b4e,#7c3aed)">🏠<span style="font-size:0.72rem;color:rgba(255,255,255,0.65);letter-spacing:1px">REAL ESTATE</span></div>
+      <div class="portfolio-body">
+        <div class="portfolio-type">Website Development</div>
+        <div class="portfolio-title">DreamWell — Find Your Dream Home</div>
+        <p class="portfolio-desc">Elegant real estate landing page with animated hero section, property listings, Playfair Display typography, and professional gold-accent design for a premium feel.</p>
+        <div class="portfolio-tags"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">UI/UX</span><span class="ptag">Landing Page</span></div>
+      </div>
     </div>
-    <div class="port-grid" id="portGrid">
-
-      <div class="port-card reveal" data-cat="web" onclick="window.open('dreamwell.html','_blank')" style="cursor:pointer;">
-        <div class="port-thumb" style="background:linear-gradient(135deg,#1a3c5e,#2563a8);">🏠
-          <div class="port-overlay"><span>View Project ↗</span></div>
-        </div>
-        <div class="port-info">
-          <div class="port-cat">Website</div>
-          <h3>DreamWell Real Estate</h3>
-          <p>Professional real estate landing page with property listings, search filters, and modern UI.</p>
-          <div class="port-tools"><span class="port-tool">HTML</span><span class="port-tool">CSS</span><span class="port-tool">JavaScript</span></div>
-        </div>
+    <div class="portfolio-card">
+      <div class="portfolio-thumb-placeholder" style="background:linear-gradient(135deg,#0f2027,#203a43,#2c5364)">🎬<span style="font-size:0.72rem;color:rgba(255,255,255,0.65);letter-spacing:1px">PRODUCTION SITE</span></div>
+      <div class="portfolio-body">
+        <div class="portfolio-type">Website Development</div>
+        <div class="portfolio-title">Shab Production — Cinematic Portfolio</div>
+        <p class="portfolio-desc">Dark, cinematic production company website featuring full-screen video backgrounds, smooth scroll effects, and a luxury premium aesthetic for a film production brand.</p>
+        <div class="portfolio-tags"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">Video BG</span><span class="ptag">Animations</span></div>
       </div>
-
-      <div class="port-card reveal" data-cat="web" onclick="window.open('dnd-logistics.html','_blank')" style="cursor:pointer;">
-        <div class="port-thumb" style="background:linear-gradient(135deg,#0f2027,#2c5364);">🚚
-          <div class="port-overlay"><span>View Project ↗</span></div>
-        </div>
-        <div class="port-info">
-          <div class="port-cat">Website · Live</div>
-          <h3>D&amp;D Logistics Website</h3>
-          <p>Full responsive website for a freight forwarding company. Multi-page, launched live at dndlogistics.in</p>
-          <div class="port-tools"><span class="port-tool">HTML</span><span class="port-tool">CSS</span><span class="port-tool">JavaScript</span><span class="port-tool">Responsive</span></div>
-        </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-thumb-placeholder" style="background:linear-gradient(135deg,#1a5c3a,#2d9e6b)">🧴<span style="font-size:0.72rem;color:rgba(255,255,255,0.65);letter-spacing:1px">PRODUCT AD</span></div>
+      <div class="portfolio-body">
+        <div class="portfolio-type">Digital Ad / HTML</div>
+        <div class="portfolio-title">H&S Anti-Hairfall — Product Ad Campaign</div>
+        <p class="portfolio-desc">Animated HTML advertisement for H&S Anti-Hairfall shampoo with cinematic product reveal shots, motion design, and compelling visual storytelling structure.</p>
+        <div class="portfolio-tags"><span class="ptag">HTML Ad</span><span class="ptag">Animation</span><span class="ptag">Product Marketing</span></div>
       </div>
-
-      <div class="port-card reveal" data-cat="web" onclick="window.open('shab-production.html','_blank')" style="cursor:pointer;">
-        <div class="port-thumb" style="background:linear-gradient(135deg,#1a1a2e,#c2607a);">🎬
-          <div class="port-overlay"><span>View Project ↗</span></div>
-        </div>
-        <div class="port-info">
-          <div class="port-cat">Website · Ad Page</div>
-          <h3>Shab Production</h3>
-          <p>Cinematic production house landing page with dark luxury aesthetics and smooth animations.</p>
-          <div class="port-tools"><span class="port-tool">HTML</span><span class="port-tool">CSS</span><span class="port-tool">Animations</span></div>
-        </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-thumb-placeholder" style="background:linear-gradient(135deg,#3d0d2b,#c4607a)">🌸<span style="font-size:0.72rem;color:rgba(255,255,255,0.65);letter-spacing:1px">BRAND IDENTITY</span></div>
+      <div class="portfolio-body">
+        <div class="portfolio-type">AI Image Generation & Branding</div>
+        <div class="portfolio-title">Sanskriti Creations — Brand Identity</div>
+        <p class="portfolio-desc">AI-generated logo and brand identity for "Sanskriti Creations" — elegant cinematic aesthetic with pastel bubbles, pearl textures, and refined Cormorant-style typography.</p>
+        <div class="portfolio-tags"><span class="ptag">AI Image Gen</span><span class="ptag">Branding</span><span class="ptag">Logo Design</span></div>
       </div>
-
-      <div class="port-card reveal" data-cat="web" onclick="window.open('hs-antihairfall.html','_blank')" style="cursor:pointer;">
-        <div class="port-thumb" style="background:linear-gradient(135deg,#2d6a4f,#52b788);">💆
-          <div class="port-overlay"><span>View Project ↗</span></div>
-        </div>
-        <div class="port-info">
-          <div class="port-cat">Website · Ad Page</div>
-          <h3>H&amp;S Anti-Hairfall Ad</h3>
-          <p>Interactive product advertisement page for Head &amp; Shoulders with product reveal and CTA design.</p>
-          <div class="port-tools"><span class="port-tool">HTML</span><span class="port-tool">CSS</span><span class="port-tool">Product Design</span></div>
-        </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-thumb-placeholder" style="background:linear-gradient(135deg,#1a0a2e,#6b21a8)">🎥<span style="font-size:0.72rem;color:rgba(255,255,255,0.65);letter-spacing:1px">AI VIDEOS</span></div>
+      <div class="portfolio-body">
+        <div class="portfolio-type">AI Video Generation</div>
+        <div class="portfolio-title">Cinematic Intro & Product Reveal Videos</div>
+        <p class="portfolio-desc">Multiple AI-generated videos: soft minimal cinematic brand intro, 360° product reveal shots for shampoo bottles, and visual storytelling content using cutting-edge AI tools.</p>
+        <div class="portfolio-tags"><span class="ptag">AI Video</span><span class="ptag">Cinematic</span><span class="ptag">Product Reveal</span><span class="ptag">Storytelling</span></div>
       </div>
-
-      <div class="port-card reveal" data-cat="video" onclick="openVideo('sanskriti-intro.mp4','Sanskriti Creations Intro')" style="cursor:pointer;">
-        <div class="port-thumb" style="background:linear-gradient(135deg,#f7c5d0,#c2607a);">✨
-          <div class="port-overlay"><span>▶ Play Video</span></div>
-        </div>
-        <div class="port-info">
-          <div class="port-cat">AI Video · Brand</div>
-          <h3>Sanskriti Creations Intro</h3>
-          <p>Soft, minimal cinematic intro animation — pastel tones, floating pearls, and elegant typography.</p>
-          <div class="port-tools"><span class="port-tool">AI Video Gen</span><span class="port-tool">Motion</span><span class="port-tool">Branding</span></div>
-        </div>
-      </div>
-
-      <div class="port-card reveal" data-cat="video" onclick="openVideo('shampoo-reveal.mp4','Product Reveal — Shampoo')" style="cursor:pointer;">
-        <div class="port-thumb" style="background:linear-gradient(135deg,#2c2c54,#6c5ce7);">🎥
-          <div class="port-overlay"><span>▶ Play Video</span></div>
-        </div>
-        <div class="port-info">
-          <div class="port-cat">AI Video · Product</div>
-          <h3>Product Reveal — Shampoo</h3>
-          <p>Cinematic AI-generated product reveal shot — white & blue shampoo bottle rotating for marketing use.</p>
-          <div class="port-tools"><span class="port-tool">AI Video Gen</span><span class="port-tool">Product Ad</span></div>
-        </div>
-      </div>
-
-      <div class="port-card reveal" data-cat="brand" onclick="openImage('sanskriti-creations-logo.png','Sanskriti Creations Logo')" style="cursor:pointer;">
-        <div class="port-thumb" style="background:linear-gradient(135deg,#fce8ed,#f7c5d0);overflow:hidden;padding:0;position:relative;">
-          <img src="sanskriti-creations-logo.png" alt="Sanskriti Creations Logo" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"/>
-          <div class="port-overlay"><span>🔍 View Logo</span></div>
-        </div>
-        <div class="port-info">
-          <div class="port-cat">Branding · Logo</div>
-          <h3>Sanskriti Creations Logo</h3>
-          <p>Enhanced elegance logo for personal brand — refined serif typography with a luxury editorial feel.</p>
-          <div class="port-tools"><span class="port-tool">AI Image Gen</span><span class="port-tool">Logo Design</span><span class="port-tool">Branding</span></div>
-        </div>
-      </div>
-
-      <!-- DATA ENTRY CARD -->
-      <div class="port-card reveal" data-cat="data" style="grid-column:span 2;">
-        <div class="port-thumb" style="background:linear-gradient(135deg,#e8f5e9,#a5d6a7);height:80px;font-size:2rem;">📊
-          <div class="port-overlay"><span>See Data Below ↓</span></div>
-        </div>
-        <div class="port-info">
-          <div class="port-cat">Data Entry · Microsoft Excel</div>
-          <h3>Sample Data Entry Work — by Sanskriti Singh</h3>
-          <p>A structured Excel workbook showcasing professional data entry across 4 sheets: Customer Data, Employee Records, Product Catalogue, and Task Tracker.</p>
-          <div class="port-tools"><span class="port-tool">MS Excel</span><span class="port-tool">Data Entry</span><span class="port-tool">4 Sheets</span><span class="port-tool">Organised Data</span></div>
-        </div>
-        <!-- INLINE EXCEL SHOWCASE -->
-        <div class="excel-showcase">
-          <div class="excel-tabs">
-            <button class="excel-tab active" onclick="showSheet(this,'s1')">📋 Customer Data</button>
-            <button class="excel-tab" onclick="showSheet(this,'s2')">👥 Employee Records</button>
-            <button class="excel-tab" onclick="showSheet(this,'s3')">🛍️ Product List</button>
-            <button class="excel-tab" onclick="showSheet(this,'s4')">✅ Task Tracker</button>
-          </div>
-
-          <!-- Sheet 1: Customer Data -->
-          <div class="sheet-view active" id="s1">
-            <div class="sheet-title">Sheet 1 — Customer Data Entry</div>
-            <table class="data-table">
-              <thead><tr><th>Sr. No</th><th>Full Name</th><th>Email Address</th><th>Phone Number</th><th>Country</th></tr></thead>
-              <tbody>
-                <tr><td>1</td><td>Aman Sharma</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fc9d919d92bc9b919d9590d29f9391">[email&#160;protected]</a></td><td>9876543210</td><td>🇮🇳 India</td></tr>
-                <tr><td>2</td><td>Neha Verma</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a4cac1ccc5e4c3c9c5cdc88ac7cbc9">[email&#160;protected]</a></td><td>8765432109</td><td>🇮🇳 India</td></tr>
-                <tr><td>3</td><td>John D'Souza</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fb91949395bb9c969a9297d5989496">[email&#160;protected]</a></td><td>9988776655</td><td>🇺🇸 USA</td></tr>
-                <tr><td>4</td><td>Priya Malhotra</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b3c3c1dacad2f3d4ded2dadf9dd0dcde">[email&#160;protected]</a></td><td>9090909090</td><td>🇨🇦 Canada</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Sheet 2: Employee Records -->
-          <div class="sheet-view" id="s2">
-            <div class="sheet-title">Sheet 2 — Employee Records</div>
-            <table class="data-table">
-              <thead><tr><th>Emp ID</th><th>Name</th><th>Designation</th><th>Department</th><th>Basic Salary</th></tr></thead>
-              <tbody>
-                <tr><td>Emp_ID101</td><td>Aarav</td><td>Marketing Manager</td><td>Marketing</td><td>₹13,154</td></tr>
-                <tr><td>Emp_ID102</td><td>Ananya</td><td>Software Engineer</td><td>IT</td><td>₹13,155</td></tr>
-                <tr><td>Emp_ID103</td><td>Vihaan</td><td>HR Executive</td><td>Human Resources</td><td>₹13,156</td></tr>
-                <tr><td>Emp_ID104</td><td>Ishita</td><td>Accountant</td><td>Finance</td><td>₹13,157</td></tr>
-                <tr><td>Emp_ID105</td><td>Aryan</td><td>Operations Supervisor</td><td>Operations</td><td>₹13,158</td></tr>
-                <tr><td>Emp_ID106</td><td>Sanya</td><td>Marketing Manager</td><td>Marketing</td><td>₹13,159</td></tr>
-                <tr><td>Emp_ID107</td><td>Krishna</td><td>Software Engineer</td><td>IT</td><td>₹13,160</td></tr>
-                <tr><td>Emp_ID108</td><td>Meera</td><td>HR Executive</td><td>Human Resources</td><td>₹13,161</td></tr>
-                <tr><td>Emp_ID109</td><td>Rohan</td><td>Accountant</td><td>Finance</td><td>₹13,162</td></tr>
-                <tr><td>Emp_ID110</td><td>Tara</td><td>HR Executive</td><td>Human Resources</td><td>₹13,163</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Sheet 3: Product List -->
-          <div class="sheet-view" id="s3">
-            <div class="sheet-title">Sheet 3 — Product List</div>
-            <table class="data-table">
-              <thead><tr><th>Product ID</th><th>Product Name</th><th>Category</th><th>Price</th><th>In Stock</th></tr></thead>
-              <tbody>
-                <tr><td>P001</td><td>Wireless Mouse</td><td>Electronics</td><td>₹699</td><td><span class="badge-yes">YES</span></td></tr>
-                <tr><td>P002</td><td>Gel Pen Set</td><td>Stationery</td><td>₹120</td><td><span class="badge-yes">YES</span></td></tr>
-                <tr><td>P003</td><td>Notebook A5</td><td>Stationery</td><td>₹90</td><td><span class="badge-no">NO</span></td></tr>
-                <tr><td>P004</td><td>USB Cable</td><td>Electronics</td><td>₹199</td><td><span class="badge-yes">YES</span></td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Sheet 4: Task Tracker -->
-          <div class="sheet-view" id="s4">
-            <div class="sheet-title">Sheet 4 — Task Tracker</div>
-            <table class="data-table">
-              <thead><tr><th>Date</th><th>Task Description</th><th>Status</th><th>Notes</th></tr></thead>
-              <tbody>
-                <tr><td>20 Jun 2025</td><td>Entered customer details</td><td><span class="badge-done">COMPLETED</span></td><td>Double-checked email</td></tr>
-                <tr><td>21 Jun 2025</td><td>Updated product prices</td><td><span class="badge-pending">PENDING</span></td><td>Prices from Amazon</td></tr>
-                <tr><td>21 Jun 2025</td><td>Created invoice spreadsheet</td><td><span class="badge-done">COMPLETED</span></td><td>Sent via email</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
+<div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
+
 <section id="experience">
-  <div class="section-inner">
-    <div class="reveal">
-      <p class="section-label">✿ My Journey</p>
-      <h2 class="section-title">Work <em>Experience</em></h2>
-    </div>
-    <div class="exp-timeline">
-      <div class="exp-item reveal">
-        <div class="exp-dot"><i class="fas fa-code"></i></div>
-        <div class="exp-card">
-          <div class="exp-header">
-            <div>
-              <div class="exp-title">Website Developer</div>
-              <div class="exp-company">dndlogistics.in &nbsp;·&nbsp; Freelance · Remote, Delhi</div>
-            </div>
-            <span class="exp-date">Dec 2025 – Jan 2026</span>
-          </div>
-          <ul class="exp-list">
-            <li>Designed and developed a responsive logistics company website using HTML, CSS, and JavaScript</li>
-            <li>Created multi-page site (Home, About, Services, Contact) to present cargo & freight solutions</li>
-            <li>Optimised layout for mobile devices, fast loading, and integrated enquiry sections for clients</li>
-            <li>Implemented a clean, professional UI suitable for a transportation and logistics business</li>
-            <li>Ensured smooth navigation and user-friendly experience for potential clients</li>
-          </ul>
-          <div class="exp-achievement">🏆 Successfully launched D&D Logistics' professional online presence, boosting digital visibility and credibility for freight forwarding and supply chain services.</div>
-        </div>
+  <div class="reveal">
+    <div class="section-label">Work History</div>
+    <h2 class="section-title">My <em>Experience</em></h2>
+    <p class="section-sub">Real-world projects where I've applied my skills to deliver professional results.</p>
+  </div>
+  <div class="reveal">
+    <div class="exp-card">
+      <div class="exp-header">
+        <div><div class="exp-title">Website Developer</div><div class="exp-company">dndlogistics.in · Freelance · Remote, Delhi</div></div>
+        <div class="exp-period">Dec 2025 – Jan 2026</div>
       </div>
+      <ul class="exp-bullets">
+        <li>Designed and developed a fully responsive logistics company website using HTML, CSS, and JavaScript</li>
+        <li>Created multi-page structure (Home, About, Services, Contact) to clearly present logistics solutions</li>
+        <li>Highlighted services including cargo transport, freight handling, and delivery solutions</li>
+        <li>Implemented professional UI optimised for mobile devices and fast loading performance</li>
+        <li>Integrated contact and enquiry sections; ensured smooth, user-friendly navigation for clients</li>
+      </ul>
+      <div class="exp-achievement"><strong>✿ Key Achievement:</strong> Successfully launched D&D Logistics' professional online presence — boosting digital visibility and credibility for their global freight forwarding and supply chain services.</div>
     </div>
   </div>
 </section>
 
-<!-- EDUCATION -->
+<div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
+
 <section id="education">
-  <div class="section-inner">
-    <div class="reveal">
-      <p class="section-label">✿ My Learning</p>
-      <h2 class="section-title">Education &amp; <em>Background</em></h2>
-    </div>
-    <div class="edu-grid">
-      <div class="edu-card reveal">
-        <div class="edu-year">2025</div>
-        <h3>Bachelor of Business Administration</h3>
-        <p>IGNOU University, Delhi</p>
-        <span class="edu-badge">2025 – 2028 · Pursuing</span>
-      </div>
-      <div class="edu-card reveal">
-        <div class="edu-year">2025</div>
-        <h3>Senior Secondary (XII) — Commerce</h3>
-        <p>Govt. Girls Senior Secondary School, Devli, Sangam Vihar, New Delhi</p>
-        <span class="edu-badge">CBSE Board</span>
-      </div>
-      <div class="edu-card reveal">
-        <div class="edu-year">2023</div>
-        <h3>Secondary (X)</h3>
-        <p>Govt. Girls Senior Secondary School, Devli, Sangam Vihar, New Delhi</p>
-        <span class="edu-badge">CBSE Board</span>
-      </div>
-    </div>
+  <div class="reveal">
+    <div class="section-label">Academic Background</div>
+    <h2 class="section-title">My <em>Education</em></h2>
+  </div>
+  <div class="edu-grid reveal">
+    <div class="edu-card"><div class="edu-icon">🎓</div><div class="edu-degree">Bachelor of Business Administration (BBA)</div><div class="edu-school">IGNOU University, Delhi</div><span class="edu-year">2025 – 2028 · Pursuing</span></div>
+    <div class="edu-card"><div class="edu-icon">📚</div><div class="edu-degree">Senior Secondary (XII) — Commerce, CBSE</div><div class="edu-school">Govt. Girls Sr. Sec. School, Devli, New Delhi</div><span class="edu-year">2025</span></div>
+    <div class="edu-card"><div class="edu-icon">📖</div><div class="edu-degree">Secondary (X), CBSE</div><div class="edu-school">Govt. Girls Sr. Sec. School, Devli, New Delhi</div><span class="edu-year">2023</span></div>
   </div>
 </section>
 
-<!-- CERTIFICATIONS -->
-<section id="certifications">
-  <div class="section-inner">
-    <div class="reveal">
-      <p class="section-label">✿ My Credentials</p>
-      <h2 class="section-title">Certifications &amp; <em>Training</em></h2>
-    </div>
-    <div class="cert-grid">
-      <div class="cert-card reveal">
-        <div class="cert-icon"><i class="fas fa-briefcase"></i></div>
-        <h3>Freedom Employability Academy (FEA)</h3>
-        <p>Employability skills, English, digital literacy, career guidance & mentorship.</p>
-        <div class="cert-date">SEP 2024 – JUN 2025</div>
-      </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon"><i class="fas fa-file-excel"></i></div>
-        <h3>CCAWE — Advanced Word & Excel</h3>
-        <p>Advanced Microsoft Word and Excel skills for professional documentation and data management.</p>
-        <div class="cert-date">OCT 2023 – MAR 2024</div>
-      </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon"><i class="fas fa-laptop"></i></div>
-        <h3>CCIB — Certificate in Business & IT</h3>
-        <p>Business and IT fundamentals covering digital tools and business communication.</p>
-        <div class="cert-date">APR 2023 – SEP 2023</div>
-      </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon"><i class="fas fa-computer"></i></div>
-        <h3>CCAB — Active Basic IT</h3>
-        <p>Foundational computer skills, MS Office suite, and essential IT knowledge for the workplace.</p>
-        <div class="cert-date">APR 2023 – SEP 2023</div>
-      </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon"><i class="fas fa-star"></i></div>
-        <h3>Personality Development & Communication</h3>
-        <p>Professional communication, public speaking, and soft skills training.</p>
-        <div class="cert-date">APR 2023 – MAR 2024</div>
-      </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon"><i class="fas fa-bullseye"></i></div>
-        <h3>Digital Marketing Course</h3>
-        <p>Comprehensive digital marketing including email campaigns, website design, HTML, CSS & JavaScript.</p>
-        <div class="cert-date">2025 – ONGOING</div>
-      </div>
-    </div>
+<section id="certifications" style="padding-top:0">
+  <div class="reveal">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Certifications &amp; <em>Training</em></h2>
+  </div>
+  <div class="cert-grid reveal">
+    <div class="cert-card"><div class="cert-dot">🌟</div><div><div class="cert-name">Freedom Employability Academy (FEA)</div><div class="cert-org">Freedom Employability Academy, Delhi</div><div class="cert-date">Sep 2024 – Jun 2025</div></div></div>
+    <div class="cert-card"><div class="cert-dot">📊</div><div><div class="cert-name">CCAWE — Advanced Word & Excel</div><div class="cert-org">Adharshila, Delhi</div><div class="cert-date">Oct 2023 – Mar 2024</div></div></div>
+    <div class="cert-card"><div class="cert-dot">💻</div><div><div class="cert-name">CCIB — Certificate in Business & IT</div><div class="cert-org">Adharshila NGO, Delhi</div><div class="cert-date">Apr 2023 – Sep 2023</div></div></div>
+    <div class="cert-card"><div class="cert-dot">🖥️</div><div><div class="cert-name">CCAB — Active Basic IT</div><div class="cert-org">Adharshila, Delhi</div><div class="cert-date">Apr 2023 – Sep 2023</div></div></div>
+    <div class="cert-card"><div class="cert-dot">🗣️</div><div><div class="cert-name">Personality Development & Communication</div><div class="cert-org">Adharshila, Delhi</div><div class="cert-date">Apr 2023 – Mar 2024</div></div></div>
+    <div class="cert-card"><div class="cert-dot">🎯</div><div><div class="cert-name">Digital Marketing & Website Designing</div><div class="cert-org">Currently Pursuing</div><div class="cert-date">HTML · CSS · JavaScript · SEO</div></div></div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
+
 <section id="contact">
-  <div class="section-inner">
-    <div class="reveal">
-      <p class="section-label">✿ Say Hello</p>
-      <h2 class="section-title">Let's Work <em>Together</em></h2>
+  <div class="contact-card reveal">
+    <span class="contact-flower">🌸</span>
+    <h3>Let's Work <em style="color:var(--deep-rose);font-style:italic">Together</em></h3>
+    <p>I'm open to internships, freelance projects, and full-time opportunities. Whether you need a website, digital content, or a creative collaborator — I'd love to hear from you!</p>
+    <div class="contact-links">
+      <a href="mailto:ssanskriti0008@gmail.com" class="contact-link"><i class="fas fa-envelope"></i><div><div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--rose);margin-bottom:2px">Email</div>ssanskriti0008@gmail.com</div></a>
+      <a href="tel:+918851332118" class="contact-link"><i class="fas fa-phone"></i><div><div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--rose);margin-bottom:2px">Phone</div>+91 8851332118</div></a>
+      <a href="https://www.linkedin.com/in/sanskriti-singh-4992a927a/" target="_blank" class="contact-link"><i class="fab fa-linkedin-in"></i><div><div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--rose);margin-bottom:2px">LinkedIn</div>linkedin.com/in/sanskriti-singh</div></a>
     </div>
-    <div class="contact-wrap">
-      <div class="contact-info reveal">
-        <h3>I'd love to hear from you ✿</h3>
-        <p>Whether you have a project in mind, want to collaborate, or just want to say hi — my inbox is always open. I'm currently available for internships and freelance opportunities.</p>
-        <div class="contact-items">
-          <div class="contact-item"><div class="c-icon"><i class="fas fa-envelope"></i></div><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1f6c6c7e716c746d766b762f2f2f275f78727e7673317c7072">[email&#160;protected]</a></span></div>
-          <div class="contact-item"><div class="c-icon"><i class="fas fa-phone"></i></div><span>+91 8851332118</span></div>
-          <div class="contact-item"><div class="c-icon"><i class="fas fa-map-marker-alt"></i></div><span>Delhi, India</span></div>
-          <div class="contact-item"><div class="c-icon"><i class="fab fa-linkedin"></i></div><span>linkedin.com/in/sanskriti-singh-4992a927a</span></div>
-        </div>
-      </div>
-      <div class="contact-form reveal">
-        <div class="form-group"><label>Your Name</label><input type="text" placeholder="What's your name?"/></div>
-        <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
-        <div class="form-group"><label>Message</label><textarea placeholder="Tell me about your project or opportunity..."></textarea></div>
-        <button class="btn-primary" style="width:100%;">Send Message ✿</button>
-      </div>
-    </div>
+    <a href="mailto:ssanskriti0008@gmail.com" class="btn-primary"><i class="fas fa-paper-plane"></i> Send Me a Message</a>
   </div>
 </section>
-
-<!-- VIDEO MODAL -->
-<div id="videoModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9000;align-items:center;justify-content:center;flex-direction:column;gap:16px;">
-  <div style="position:relative;width:min(860px,92vw);">
-    <p id="modalTitle" style="color:#f7c5d0;font-family:'Dancing Script',cursive;font-size:1.5rem;margin-bottom:10px;text-align:center;"></p>
-    <video id="modalVideo" controls style="width:100%;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,0.6);"></video>
-    <button onclick="closeVideo()" style="position:absolute;top:-14px;right:-14px;width:38px;height:38px;border-radius:50%;background:#c2607a;border:none;color:white;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(194,96,122,0.5);">✕</button>
-  </div>
-</div>
-
-<!-- IMAGE LIGHTBOX -->
-<div id="imgLightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9000;align-items:center;justify-content:center;flex-direction:column;gap:16px;">
-  <div style="position:relative;max-width:min(700px,90vw);">
-    <p id="lightboxTitle" style="color:#f7c5d0;font-family:'Dancing Script',cursive;font-size:1.5rem;margin-bottom:10px;text-align:center;"></p>
-    <img id="lightboxImg" src="" alt="Logo" style="width:100%;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,0.6);"/>
-    <button onclick="closeImage()" style="position:absolute;top:-14px;right:-14px;width:38px;height:38px;border-radius:50%;background:#c2607a;border:none;color:white;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(194,96,122,0.5);">✕</button>
-  </div>
-</div>
 
 <footer>
-  <p>Crafted with <span class="heart">♥</span> by <span>Sanskriti Singh</span> &nbsp;·&nbsp; Delhi, India &nbsp;·&nbsp; © 2026</p>
+  <p>Made with <span>♥</span> by Sanskriti Singh &nbsp;·&nbsp; Delhi, India &nbsp;·&nbsp; <span>© 2026</span></p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// CURSOR
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
-document.addEventListener('mousemove',e=>{
-  cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';
-  setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},60);
-});
-document.querySelectorAll('a,button').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.width='54px';ring.style.height='54px';});
-  el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';ring.style.width='36px';ring.style.height='36px';});
-});
-
-// CHERRY BLOSSOMS
-const canvas=document.getElementById('blossom-canvas');
-const ctx=canvas.getContext('2d');
-function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+<script>
+// CHERRY BLOSSOM CANVAS
+const canvas = document.getElementById('blossom-canvas');
+const ctx = canvas.getContext('2d');
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
 resize();window.addEventListener('resize',resize);
-const petals=[];
-function rnd(a,b){return a+Math.random()*(b-a);}
-function newPetal(){
-  return{x:rnd(-60,canvas.width+60),y:rnd(-80,-10),size:rnd(6,17),
-    vy:rnd(0.6,1.8),vx:rnd(-0.4,0.7),rot:rnd(0,Math.PI*2),
-    rs:rnd(-0.015,0.015),sway:rnd(0.3,1.1),so:rnd(0,Math.PI*2),
-    op:rnd(0.45,0.85),
-    col:['#f7c5d0','#f0a0b8','#fce8ed','#e8b4c3','#ffb7c5'][Math.floor(Math.random()*5)]};
+const COLORS=['rgba(249,208,220,0.85)','rgba(232,160,176,0.75)','rgba(255,228,235,0.9)','rgba(255,192,203,0.7)','rgba(252,210,225,0.8)'];
+class Petal{
+  constructor(){this.reset(true)}
+  reset(init=false){
+    this.x=Math.random()*canvas.width;
+    this.y=init?Math.random()*canvas.height:-30;
+    this.size=6+Math.random()*10;
+    this.speedY=0.55+Math.random()*1.1;
+    this.speedX=-0.4+Math.random()*1.1;
+    this.rotation=Math.random()*Math.PI*2;
+    this.rotSpeed=(Math.random()-0.5)*0.04;
+    this.color=COLORS[Math.floor(Math.random()*COLORS.length)];
+    this.sway=Math.random()*Math.PI*2;
+    this.swaySpeed=0.01+Math.random()*0.02;
+    this.swayAmt=0.5+Math.random()*1.5;
+    this.opacity=0.45+Math.random()*0.55;
+  }
+  update(){
+    this.sway+=this.swaySpeed;
+    this.x+=this.speedX+Math.sin(this.sway)*this.swayAmt;
+    this.y+=this.speedY;
+    this.rotation+=this.rotSpeed;
+    if(this.y>canvas.height+30||this.x<-40||this.x>canvas.width+40)this.reset();
+  }
+  draw(){
+    ctx.save();
+    ctx.globalAlpha=this.opacity;
+    ctx.translate(this.x,this.y);
+    ctx.rotate(this.rotation);
+    ctx.fillStyle=this.color;
+    ctx.beginPath();
+    ctx.ellipse(0,0,this.size*0.55,this.size,0,0,Math.PI*2);
+    ctx.fill();
+    ctx.strokeStyle='rgba(196,96,122,0.2)';
+    ctx.lineWidth=0.7;
+    ctx.beginPath();
+    ctx.moveTo(0,-this.size);
+    ctx.lineTo(0,this.size);
+    ctx.stroke();
+    ctx.restore();
+  }
 }
-for(let i=0;i<55;i++){const p=newPetal();p.y=rnd(-80,canvas.height);petals.push(p);}
-let fr=0;
-function drawPetal(p){
-  ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);
-  ctx.globalAlpha=p.op;ctx.fillStyle=p.col;
-  ctx.beginPath();
-  ctx.moveTo(0,-p.size);
-  ctx.bezierCurveTo(p.size*0.8,-p.size*0.6,p.size*0.8,p.size*0.6,0,p.size*0.3);
-  ctx.bezierCurveTo(-p.size*0.8,p.size*0.6,-p.size*0.8,-p.size*0.6,0,-p.size);
-  ctx.fill();
-  ctx.globalAlpha=p.op*0.2;ctx.fillStyle='#fff';
-  ctx.beginPath();ctx.ellipse(0,-p.size*0.2,p.size*0.22,p.size*0.45,0,0,Math.PI*2);ctx.fill();
-  ctx.restore();
-}
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);fr++;
-  petals.forEach(p=>{
-    p.y+=p.vy;p.x+=p.vx+Math.sin(fr*0.012+p.so)*p.sway;p.rot+=p.rs;
-    drawPetal(p);
-    if(p.y>canvas.height+30||p.x<-80||p.x>canvas.width+80)Object.assign(p,newPetal());
-  });
-  requestAnimationFrame(animate);
-}
+const petals=Array.from({length:70},()=>new Petal());
+function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);petals.forEach(p=>{p.update();p.draw()});requestAnimationFrame(animate)}
 animate();
-
 // SCROLL REVEAL
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:0.1});
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*80)})},{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-// FILTER
-function filterPort(btn,cat){
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.port-card').forEach(c=>{
-    c.classList.toggle('hidden', cat!=='all' && c.dataset.cat!==cat);
-  });
-}
-
-// EXCEL TABS
-function showSheet(btn,id){
-  document.querySelectorAll('.excel-tab').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.sheet-view').forEach(s=>s.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById(id).classList.add('active');
-}
-
-// VIDEO MODAL
-function openVideo(src, title){
-  const modal = document.getElementById('videoModal');
-  const vid = document.getElementById('modalVideo');
-  const lbl = document.getElementById('modalTitle');
-  vid.src = src;
-  lbl.textContent = title;
-  modal.style.display = 'flex';
-  vid.play();
-}
-function closeVideo(){
-  const modal = document.getElementById('videoModal');
-  const vid = document.getElementById('modalVideo');
-  vid.pause();
-  vid.src = '';
-  modal.style.display = 'none';
-}
-
-// IMAGE LIGHTBOX
-function openImage(src, title){
-  const lb = document.getElementById('imgLightbox');
-  const img = document.getElementById('lightboxImg');
-  const lbl = document.getElementById('lightboxTitle');
-  img.src = src;
-  lbl.textContent = title;
-  lb.style.display = 'flex';
-}
-function closeImage(){
-  document.getElementById('imgLightbox').style.display = 'none';
-}
-
-// Close modals on backdrop click
-document.getElementById('videoModal').addEventListener('click', function(e){ if(e.target===this) closeVideo(); });
-document.getElementById('imgLightbox').addEventListener('click', function(e){ if(e.target===this) closeImage(); });
+// NAV SHADOW
+window.addEventListener('scroll',()=>{document.querySelector('nav').style.boxShadow=window.scrollY>60?'0 4px 30px rgba(196,96,122,0.12)':''});
+// SKILL STAGGER
+document.querySelectorAll('.skill-card').forEach((c,i)=>c.style.transitionDelay=(i*0.04)+'s');
 </script>
 </body>
 </html>
